@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339440d13cde489386ccf543a4b56308, type: 3}
+  m_Name: SSO_GameConfig
+  m_EditorClassIdentifier: Assembly-CSharp::SSO_GameConfig
+  lineCount: 5
+  lineWidthLv: 1
+  jumpHeight: 3
+  jumpDuration: 1.2
+  slideDuration: 1.2
+  slideHeightScale: 0.5
