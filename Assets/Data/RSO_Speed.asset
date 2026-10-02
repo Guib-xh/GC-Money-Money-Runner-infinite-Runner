@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74bfaf0fb55148e98e13f9a774142359, type: 3}
+  m_Script: {fileID: 11500000, guid: e9228f9d066640a39609685404e6e72e, type: 3}
   m_Name: RSO_Speed
-  m_EditorClassIdentifier: Assembly-CSharp::RSO_Speed
+  m_EditorClassIdentifier: Assembly-CSharp::Speed.RSO_Speed
   _value: 0

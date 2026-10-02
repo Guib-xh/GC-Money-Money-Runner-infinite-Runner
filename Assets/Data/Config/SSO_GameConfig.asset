@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: SSO_GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::SSO_GameConfig
   lineCount: 5
-  lineWidthLv: 1
+  lineWidthLv: 2
+  RowDepthR: 2
+  VisibilityRows: 20
   jumpHeight: 3
   jumpDuration: 1.2
   slideDuration: 1.2
   slideHeightScale: 0.5
+  KvGrowthPerStage: 0.1
+  v0: 6
+  firstStageDuration: 150
+  MinStageDurationSeconds: 120
