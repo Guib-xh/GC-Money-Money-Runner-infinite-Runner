@@ -1,6 +1,7 @@
 using Player;
 using Speed;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Stage
 {
@@ -11,7 +12,7 @@ namespace Stage
         [SerializeField] private RSE_RunStarted _runStarted;
 
         [SerializeField] private RSO_StageLengthRows _stageLengthRows;
-        [SerializeField] private RSO_DistanceRowsInStage _distanceRowsInStage;
+        [SerializeField] private RSO_InStageDistanceRows inStageDistanceRows;
         [SerializeField] private RSO_CurrentStage _currentStage;
         [SerializeField] private RSO_Speed _speed;
 
@@ -30,11 +31,11 @@ namespace Stage
         {
             int n = _currentStage.Value;
             float duration = Mathf.Max(
-                _gameConfig.MinStageDurationSeconds,
+                _gameConfig.minStageDurationSeconds,
                 _gameConfig.firstStageDuration - _durationDecreasePerStage * (n - 1));
 
-            _stageLengthRows.Value = _speed.Value * duration / _gameConfig.RowDepthR;
-            _distanceRowsInStage.Value = 0f;
+            _stageLengthRows.Value = _speed.Value * duration / _gameConfig.rowDepthR;
+            inStageDistanceRows.Value = 0f;
             
         }
     }

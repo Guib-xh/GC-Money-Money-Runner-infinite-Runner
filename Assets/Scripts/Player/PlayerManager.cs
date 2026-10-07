@@ -49,7 +49,7 @@ namespace Player
 
         private void Initialize()
         {
-            Debug.Log("Initializing Player Manager");
+            //Debug.Log("Initializing Player Manager");
             StopAllCoroutines();
             _isMovingLine = false;
             _pendingLineMove = 0;
@@ -65,7 +65,7 @@ namespace Player
 
         private void RequestLineMovement(int direction)
         {
-            Debug.Log("Requesting Line Movement");
+            //Debug.Log("Requesting Line Movement");
             int target = _currentLine.Value + direction;
             if (target < 0 || target >= _gameConfig.lineCount) return; // hors piste
 
@@ -74,14 +74,28 @@ namespace Player
                 _pendingLineMove = direction;
                 return;
             }
+            StartCoroutine(MoveLineRoutine(direction));
 
+        }
+        
+        private IEnumerator MoveLineRoutine(int direction)
+        {
             _isMovingLine = true;
+            int fromLane = _currentLine.Value;
             int toLine = _currentLine.Value + direction;
-            float newX = LaneToX(toLine);
+            float fromX = LaneToX(fromLane);
+            float toX = LaneToX(toLine);
 
-            Vector3 p = transform.localPosition;
-            p.x = newX;
-            transform.localPosition = p;
+            float t = 0f;
+            while (t < _gameConfig.lateralMoveDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                float p = Mathf.Clamp01(t / _gameConfig.lateralMoveDuration);
+                SetX(Mathf.Lerp(fromX, toX, p));
+                yield return null;
+            }
+
+            SetX(toX);
 
             _currentLine.Value = toLine;
             _isMovingLine = false;
@@ -96,6 +110,12 @@ namespace Player
 
         private float LaneToX(int lane) => (lane - (_gameConfig.lineCount - 1) / 2f) * _gameConfig.lineWidthLv;
 
+        private void SetX(float newX)
+        {
+            Vector3 p = transform.localPosition;
+            p.x = newX;
+            transform.localPosition = p;
+        }
         private void OnJumpRequested(InputAction.CallbackContext context)
         {
             if (_isJumping || _isSliding) return;

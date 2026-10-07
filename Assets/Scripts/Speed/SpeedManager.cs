@@ -9,7 +9,7 @@ namespace Speed
         [SerializeField] private RSO_Speed _speed;
         [SerializeField] private RSO_Kv _kv;
         [SerializeField] private RSO_CurrentStage _currentStage;
-        [SerializeField] private RSO_DistanceRowsInStage _distanceRowsInStage;
+        [SerializeField] private RSO_InStageDistanceRows _inStageDistanceRows;
         [SerializeField] private RSO_StageLengthRows _stageLengthRows;
         
         [SerializeField] private RSE_RunStarted _runStarted;
@@ -18,7 +18,7 @@ namespace Speed
 
         private float kvMax = 2f;
         
-        public float KvBase(int stage) => Mathf.Min(1f + _gameConfig.KvGrowthPerStage * (stage - 1), kvMax);
+        public float KvBase(int stage) => Mathf.Min(1f + _gameConfig.kvGrowthPerStage * (stage - 1), kvMax);
         
         private void OnEnable()
         {
@@ -42,14 +42,14 @@ namespace Speed
             float kvStart = KvBase(stage);
             float kvEnd = KvBase(stage + 1);
             float progressSpeed = _stageLengthRows.Value > 0f ?
-                                Mathf.Clamp01(_distanceRowsInStage.Value / _stageLengthRows.Value) :
+                                Mathf.Clamp01(_inStageDistanceRows.Value / _stageLengthRows.Value) :
                                 0f; 
             float target = Mathf.Lerp(kvStart, kvEnd, progressSpeed);
             _kv.Value = target;
             _speed.Value = _kv.Value * _gameConfig.v0;
-            Debug.Log("_stageLengthRows :" + _stageLengthRows.Value);
-            Debug.Log("_distanceRowsInStage :" + _distanceRowsInStage.Value);
-            Debug.Log("speed :" + _speed.Value);
+            //Debug.Log("_stageLengthRows :" + _stageLengthRows.Value);
+            //Debug.Log("_distanceRowsInStage :" + _distanceRowsInStage.Value);
+            //Debug.Log("speed :" + _speed.Value);
         }
     }
 }
