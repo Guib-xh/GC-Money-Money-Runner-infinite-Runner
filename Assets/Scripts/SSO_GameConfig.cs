@@ -30,5 +30,6 @@ public class SSO_GameConfig: ScriptableObject
     
     //VIE
     public int startingHearts = 3;
-    
+    public float postCollisionInvulnerabilitySeconds = 1f;
+
 }
