@@ -8,7 +8,7 @@ public class SSO_GameConfig: ScriptableObject
     public int lineCount = 5;
     public float lineWidthLv = 2f; //en m
     public float rowDepthR = 2f; //en m
-    public int visibilityRows = 20; //nombre de rangé en visibilité : 20R par défaut
+    public int visibilityRows = 40; //nombre de rangé en visibilité : 20R par défaut
     
     //MOUVEMENT
     public float jumpHeight = 3f;
@@ -22,7 +22,7 @@ public class SSO_GameConfig: ScriptableObject
     //Valeur d'augmentation de Kv par étape
     public float kvGrowthPerStage = 0.1f;
     //Vitesse initiale
-    public float v0 = 6f; //en m/s
+    public float v0 = 10f; //en m/s
     
     //STAGE
     public float firstStageDuration = 150f; //en seconde
@@ -31,5 +31,10 @@ public class SSO_GameConfig: ScriptableObject
     //VIE
     public int startingHearts = 3;
     public float postCollisionInvulnerabilitySeconds = 1f;
+    
+    //SCORE
+    public int scorePerMoney = 10;
+    public int scorePerRow = 15;
+    public int scorePerBoss = 2000;
 
 }

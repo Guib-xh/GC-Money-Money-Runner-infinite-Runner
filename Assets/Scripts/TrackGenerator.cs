@@ -19,7 +19,8 @@ public class TrackGenerator : MonoBehaviour
     private List<GameObject> _activeChunk = new ();
     private System.Random _rng;
     private String _lastChunkId;
-    private float _frontEdgeWorldZ;
+    private float _nextSpawnPositionZ;
+    private int CHUNK_LENGHT_ROW = 10;
     public int Seed { get; set; }
     
     
@@ -31,11 +32,12 @@ public class TrackGenerator : MonoBehaviour
         foreach (var chunk in _activeChunk) Destroy(chunk);
         _activeChunk.Clear();
         _lastChunkId = null;
-        _frontEdgeWorldZ = 0f;
+        _nextSpawnPositionZ = 0f;
+        _totalDistanceRows.Value = 0f;
         if (Seed == 0) Seed = Environment.TickCount;
         _rng = new System.Random(Seed);
 
-        while (_frontEdgeWorldZ < _gameConfig.visibilityRows * _gameConfig.rowDepthR)
+        while (_nextSpawnPositionZ < _gameConfig.visibilityRows * _gameConfig.rowDepthR)
             SpawnNextChunk();
     }
 
@@ -45,7 +47,7 @@ public class TrackGenerator : MonoBehaviour
         float deltaRows = deltaMeters / _gameConfig.rowDepthR;
         _inStageDistanceRows.Value += deltaRows;
         _totalDistanceRows.Value += deltaRows;
-        _frontEdgeWorldZ -= deltaMeters;
+        _nextSpawnPositionZ -= deltaMeters;
 
         for (int i = _activeChunk.Count - 1; i >= 0; i--)
         {
@@ -58,16 +60,16 @@ public class TrackGenerator : MonoBehaviour
                 _activeChunk.RemoveAt(i);
             }
         }
-        if (_frontEdgeWorldZ < _gameConfig.visibilityRows * _gameConfig.rowDepthR) SpawnNextChunk();
+        if (_nextSpawnPositionZ < _gameConfig.visibilityRows * _gameConfig.rowDepthR) SpawnNextChunk();
     }
 
     private void SpawnNextChunk()
     {
-        Debug.Log("Spawning chunk");
+        //Debug.Log("Spawning chunk");
         GameObject chunkPrefab = PickEligibleChunk();
         GameObject chunk = Instantiate(chunkPrefab, transform);
-        chunk.transform.position = new Vector3(0f, 0f, _frontEdgeWorldZ);
-        _frontEdgeWorldZ += 10 * _gameConfig.rowDepthR; //TODO rendre variable le nombre de rows d'un chunk
+        chunk.transform.position = new Vector3(0f, 0f, _nextSpawnPositionZ);
+        _nextSpawnPositionZ += CHUNK_LENGHT_ROW * _gameConfig.rowDepthR; //TODO rendre variable le nombre de rows d'un chunk
         _activeChunk.Add(chunk);
     }
 

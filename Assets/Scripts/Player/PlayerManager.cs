@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -13,12 +15,11 @@ namespace Player
         [SerializeField] private InputActionReference _useObjectActionReference;
 
         [SerializeField] private RSO_CurrentLine _currentLine;
-        [SerializeField] private RSE_RunStarted _runStarted;
+        [SerializeField] private RSE_RunStarted _runStartedEvent;
 
         [SerializeField] private SSO_GameConfig _gameConfig;
 
         [SerializeField] private AnimationCurve _jumpHeightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
 
         private int _pendingLineMove;
         private bool _isMovingLine;
@@ -34,7 +35,7 @@ namespace Player
             _jumpInputActionReference.action.performed += OnJumpRequested;
             _slideInputActionReference.action.performed += OnSlideRequested;
 
-            _runStarted.Event += Initialize;
+            _runStartedEvent.Event += Initialize;
         }
 
         private void OnDisable()
@@ -44,7 +45,7 @@ namespace Player
             _jumpInputActionReference.action.performed -= OnJumpRequested;
             _slideInputActionReference.action.performed -= OnSlideRequested;
 
-            _runStarted.Event -= Initialize;
+            _runStartedEvent.Event -= Initialize;
         }
 
         private void Initialize()
@@ -58,6 +59,12 @@ namespace Player
 
             _currentLine.Value = (_gameConfig.lineCount - 1) / 2;
 
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("OBSTACLE TRIGGER ENTER");
+            other.GetComponentInParent<IRunnerTrigger>()?.OnPlayerTrigger();
         }
 
         private void OnMoveLeftRequested(InputAction.CallbackContext context) => RequestLineMovement(-1);

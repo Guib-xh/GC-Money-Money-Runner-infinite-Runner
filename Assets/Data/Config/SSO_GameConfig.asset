@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SSO_GameConfig
   lineCount: 5
   lineWidthLv: 2
-  RowDepthR: 2
-  VisibilityRows: 20
+  rowDepthR: 2
+  visibilityRows: 40
   jumpHeight: 3
+  lateralMoveDuration: 0.25
   jumpDuration: 1.2
   slideDuration: 1.2
   slideHeightScale: 0.5
-  KvGrowthPerStage: 0.1
-  v0: 6
+  kvGrowthPerStage: 0.1
+  v0: 10
   firstStageDuration: 150
-  MinStageDurationSeconds: 120
+  minStageDurationSeconds: 120
+  startingHearts: 3
+  postCollisionInvulnerabilitySeconds: 1

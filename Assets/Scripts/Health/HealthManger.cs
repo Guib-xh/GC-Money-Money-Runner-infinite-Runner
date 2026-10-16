@@ -17,8 +17,6 @@ namespace Health
         
         [SerializeField] private SSO_GameConfig _gameConfig;
         
-
-
         private void OnEnable()
         {
             _runStartedEvent.Event += Initialize;
@@ -36,10 +34,12 @@ namespace Health
             //maxHearts pourra servir pour augmenter les coeurs max par l'épicerie
             _maxHearts.Value = _gameConfig.startingHearts; 
             _hearts.Value = _maxHearts.Value; 
+            _invulnerable.Value = false;
         }
 
         private void OnCollision()
         {
+            Debug.Log("OnCollision");
             if (_invulnerable.Value) return;
             _hearts.Value = Mathf.Max(0, _hearts.Value - 1);
             
