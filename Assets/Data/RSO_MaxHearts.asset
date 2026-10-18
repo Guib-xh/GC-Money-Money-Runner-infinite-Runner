@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a2759b73db4dc0b30c50e1bc703565, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d3495164f4f4b50a141ee08f837d1cc, type: 3}
   m_Name: RSO_MaxHearts
-  m_EditorClassIdentifier: Assembly-CSharp::Player.RSO_MaxHearts
+  m_EditorClassIdentifier: Assembly-CSharp::Health.RSO_MaxHearts
   _value: 0

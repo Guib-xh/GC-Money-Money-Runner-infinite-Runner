@@ -51,9 +51,10 @@ MonoBehaviour:
   _moveRightInputActionReference: {fileID: 2483551265786942260, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
   _jumpInputActionReference: {fileID: -4416877325436722799, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
   _slideInputActionReference: {fileID: -5774040444522855998, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
-  _useObjectActionReference: {fileID: -7189898962230513785, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
+  _usePowerUpActionReference: {fileID: 0}
   _currentLine: {fileID: 11400000, guid: 5c5d8283229914a3aa057bf8dd7e33c5, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
+  _usePowerUpRequestedEvent: {fileID: 0}
   _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
   _jumpHeightCurve:
     serializedVersion: 2
@@ -139,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8589991678447164090}
   m_Layer: 0
-  m_Name: Model
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -24,7 +24,7 @@ namespace Loot
         {
             if (_collected) return;
             _collected = true;
-            _lootCollectedEvent.Dispatch(_lootItem.Value);
+            _lootCollectedEvent.Dispatch(_lootItem);
             gameObject.SetActive(false); //réinitilisé par le générateur
         }
     }

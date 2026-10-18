@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e07e7d84cf42e082a88c77956bf512, type: 3}
+  m_Name: Magnet
+  m_EditorClassIdentifier: Assembly-CSharp::Loot.SSO_PowerUp
+  DisplayName: Magnet
+  Icon: {fileID: 1535325516486818496, guid: e6e3f382e7ed84aeeb125d002a211e68, type: 3}
+  DurationRows: 12
+  SpawnProbability: 15
+  _activateSkillEvent: {fileID: 11400000, guid: 50692923170e04b64a98fe33ad06b651, type: 2}
+  _desactivateSkillEvent: {fileID: 11400000, guid: bc43a6ec1030d4e708f8c5a4c22572c4, type: 2}

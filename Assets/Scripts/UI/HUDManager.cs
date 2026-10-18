@@ -1,4 +1,5 @@
-using System;
+using Health;
+using Loot;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace UI
         [SerializeField] private RSO_MoneyInRun _moneyInRun;
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
         [SerializeField] private RSO_MaxHearts _maxHearts;
+        [SerializeField] private RSO_HeldPowerUp _heldPowerUp;
+        [SerializeField] private RSO_ActivePowerUp _activePowerUp;
         
         [SerializeField] private SSO_GameConfig _gameConfig;
         
@@ -20,6 +23,12 @@ namespace UI
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private TMP_Text _moneyText;
         [SerializeField] private TMP_Text _distanceText;
+        
+        [SerializeField] private Image _heldPowerUpIcon;
+        [SerializeField] private GameObject _heldPowerUpPanel;
+        
+        [SerializeField] private Image _activePowerUpIcon;
+        [SerializeField] private GameObject _activePowerUpPanel;
         
         [SerializeField] private Image[] _heartIcons;
 
@@ -29,6 +38,8 @@ namespace UI
             _moneyInRun.OnChanged += RefreshMoney;
             _totalDistanceRows.OnChanged += RefreshDistance;
             _hearts.OnChanged += RefreshHearts;
+            _heldPowerUp.OnChanged += RefreshHeldPowerUp;
+            _activePowerUp.OnChanged += RefreshActivePowerUp;
         }
         
         private void OnDisable()
@@ -37,6 +48,8 @@ namespace UI
             _moneyInRun.OnChanged -= RefreshMoney;
             _totalDistanceRows.OnChanged -= RefreshDistance;
             _hearts.OnChanged -= RefreshHearts;
+            _heldPowerUp.OnChanged -= RefreshHeldPowerUp;
+            _activePowerUp.OnChanged -= RefreshActivePowerUp;
         }
         
         private void RefreshScore(int _) => _scoreText.text = _score.Value.ToString("N0");
@@ -57,6 +70,27 @@ namespace UI
         private Color GetHeartsIconColor(int iconIndex)
         {
             return iconIndex < _hearts.Value ? Color.white : new Color(1, 1, 1, 0.25f);
+        }
+
+        private void RefreshHeldPowerUp(SSO_PowerUp powerUp)
+        {
+            bool hasPowerUp = _heldPowerUp.Value is not null;
+            if (hasPowerUp)
+            {
+                _heldPowerUpIcon.sprite = powerUp.Icon;
+            }
+            _heldPowerUpPanel.SetActive(hasPowerUp);
+        }
+
+        private void RefreshActivePowerUp(SSO_PowerUp powerUp)
+        {
+            bool isPowerUpInProgress = _activePowerUp.Value is not null;
+            if (isPowerUpInProgress)
+            {
+                _activePowerUpIcon.sprite  = powerUp.Icon;
+            }
+            _activePowerUpPanel.SetActive(isPowerUpInProgress);
+            
         }
     }
 }

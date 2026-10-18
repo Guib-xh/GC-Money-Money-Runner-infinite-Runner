@@ -7,6 +7,7 @@ namespace Loot
     {
         public string DisplayName;
         public int Value;
+        public bool IsLootBox;
         public GameObject Prefab;
         [Range(0f, 1f)] public float SpawnWeight;
     }

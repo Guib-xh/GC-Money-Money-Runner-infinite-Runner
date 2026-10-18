@@ -1,3 +1,4 @@
+using Loot;
 using Player;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ namespace Score
             _score.Value = 0;
         }
 
-        private void OnLootcollected(int _) => UpdateScore();
+        private void OnLootcollected(SSO_LootItem _) => UpdateScore();
         private void OnDistanceChanged(float _) => UpdateScore();
 
         private void UpdateScore()

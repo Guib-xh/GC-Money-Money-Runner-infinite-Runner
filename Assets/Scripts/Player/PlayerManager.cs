@@ -12,10 +12,12 @@ namespace Player
         [SerializeField] private InputActionReference _moveRightInputActionReference;
         [SerializeField] private InputActionReference _jumpInputActionReference;
         [SerializeField] private InputActionReference _slideInputActionReference;
-        [SerializeField] private InputActionReference _useObjectActionReference;
+        [SerializeField] private InputActionReference _usePowerUpActionReference;
 
         [SerializeField] private RSO_CurrentLine _currentLine;
+        
         [SerializeField] private RSE_RunStarted _runStartedEvent;
+        [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
 
         [SerializeField] private SSO_GameConfig _gameConfig;
 
@@ -34,6 +36,7 @@ namespace Player
             _moveRightInputActionReference.action.performed += OnMoveRightRequested;
             _jumpInputActionReference.action.performed += OnJumpRequested;
             _slideInputActionReference.action.performed += OnSlideRequested;
+            _usePowerUpActionReference.action.performed += OnUsePowerUpRequested;
 
             _runStartedEvent.Event += Initialize;
         }
@@ -63,7 +66,6 @@ namespace Player
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("OBSTACLE TRIGGER ENTER");
             other.GetComponentInParent<IRunnerTrigger>()?.OnPlayerTrigger();
         }
 
@@ -184,6 +186,11 @@ namespace Player
             Vector3 s = transform.localScale;
             s.y = scaleY;
             transform.localScale = s;
+        }
+
+        private void OnUsePowerUpRequested(InputAction.CallbackContext context)
+        {
+            _usePowerUpRequestedEvent.Dispatch();
         }
 
     }

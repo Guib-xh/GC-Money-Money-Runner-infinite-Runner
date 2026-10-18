@@ -20,9 +20,10 @@ public class SSO_GameConfig: ScriptableObject
     
     //VITESSE
     //Valeur d'augmentation de Kv par étape
-    public float kvGrowthPerStage = 0.1f;
+    public float kvGrowthPerStage = 0.4f;
     //Vitesse initiale
-    public float v0 = 10f; //en m/s
+    public float v0 = 6f; //en m/s
+    public float kvMax = 4f;
     
     //STAGE
     public float firstStageDuration = 150f; //en seconde

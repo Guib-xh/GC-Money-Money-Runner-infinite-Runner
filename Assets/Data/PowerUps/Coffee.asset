@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e07e7d84cf42e082a88c77956bf512, type: 3}
+  m_Name: Coffee
+  m_EditorClassIdentifier: Assembly-CSharp::Loot.SSO_PowerUp
+  DisplayName: Coffee
+  Icon: {fileID: -1850988681521255122, guid: c9c26b9f636b74607bc775456d85487a, type: 3}
+  DurationRows: 6
+  SpawnProbability: 20
+  _activateSkillEvent: {fileID: 11400000, guid: 7775ead74559849ddac85890aad322d8, type: 2}
+  _desactivateSkillEvent: {fileID: 11400000, guid: b0f10bfe3ea6847adab1bbdce766d2f7, type: 2}

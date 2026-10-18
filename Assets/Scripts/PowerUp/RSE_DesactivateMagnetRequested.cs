@@ -1,0 +1,8 @@
+using System;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "RSE_DesactivateMagnetRequested", menuName="Events/RSE_DesactivateMagnetRequested")]
+public class RSE_DesactivateMagnetRequested : RuntimeScriptableEvent
+{
+
+}

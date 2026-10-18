@@ -21,9 +21,12 @@ MonoBehaviour:
   jumpDuration: 1.2
   slideDuration: 1.2
   slideHeightScale: 0.5
-  kvGrowthPerStage: 0.1
-  v0: 10
+  kvGrowthPerStage: 0.4
+  v0: 6
   firstStageDuration: 150
   minStageDurationSeconds: 120
   startingHearts: 3
   postCollisionInvulnerabilitySeconds: 1
+  scorePerMoney: 10
+  scorePerRow: 15
+  scorePerBoss: 2000

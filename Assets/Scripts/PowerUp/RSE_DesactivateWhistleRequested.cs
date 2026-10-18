@@ -1,0 +1,8 @@
+using System;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "RSE_DesactivateWhistleRequested", menuName="Events/RSE_DesactivateWhistleRequested")]
+public class RSE_DesactivateWhistleRequested : RuntimeScriptableEvent
+{
+
+}

@@ -13,27 +13,35 @@ namespace Speed
         [SerializeField] private RSO_StageLengthRows _stageLengthRows;
         
         [SerializeField] private RSE_RunStarted _runStarted;
+        [SerializeField] private RSE_ActivateCoffeeRequested _activateCoffeeRequestedEvent;
+        [SerializeField] private RSE_DesactivateCoffeeRequested _desactivateCoffeeRequestedEvent;
 
         [SerializeField] private SSO_GameConfig _gameConfig;
-
-        private float kvMax = 2f;
         
-        public float KvBase(int stage) => Mathf.Min(1f + _gameConfig.kvGrowthPerStage * (stage - 1), kvMax);
+        private float _slowSpeedMultiplier;
+
+        
+        public float KvBase(int stage) => Mathf.Min(1f + _gameConfig.kvGrowthPerStage * (stage - 1), _gameConfig.kvMax);
         
         private void OnEnable()
         {
             _runStarted.Event += Initialize;
+            _activateCoffeeRequestedEvent.Event += SlowSpeed;
+            _desactivateCoffeeRequestedEvent.Event += RestoreSpeed;
         }
 
         private void OnDisable()
         {
             _runStarted.Event -= Initialize;
+            _activateCoffeeRequestedEvent.Event -= SlowSpeed;
+            _desactivateCoffeeRequestedEvent.Event -= RestoreSpeed;
         }
 
         private void Initialize()
         {
+            _slowSpeedMultiplier = 1f;
             _kv.Value = KvBase(1);
-            _speed.Value = _kv.Value * _gameConfig.v0;
+            CalculateSpeed();
         }
 
         private void Update()
@@ -46,10 +54,27 @@ namespace Speed
                                 0f; 
             float target = Mathf.Lerp(kvStart, kvEnd, progressSpeed);
             _kv.Value = target;
-            _speed.Value = _kv.Value * _gameConfig.v0;
+            CalculateSpeed();
             //Debug.Log("_stageLengthRows :" + _stageLengthRows.Value);
-            //Debug.Log("_distanceRowsInStage :" + _distanceRowsInStage.Value);
-            //Debug.Log("speed :" + _speed.Value);
+            //Debug.Log("_distanceRowsInStage :" + _inStageDistanceRows.Value);
+            //Debug.Log("progressSpeed :" + progressSpeed);
+            Debug.Log("speed :" + _speed.Value);
+        }
+
+        private void CalculateSpeed()
+        {
+            _speed.Value = _kv.Value * _gameConfig.v0 * _slowSpeedMultiplier;
+            
+        }
+
+        private void SlowSpeed()
+        {
+            _slowSpeedMultiplier = 0.7f;
+        }
+        
+        private void RestoreSpeed()
+        {
+            _slowSpeedMultiplier = 1f;
         }
     }
 }
