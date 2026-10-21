@@ -1,4 +1,5 @@
 using Boss;
+using Countdown;
 using Player;
 using Speed;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Stage
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
         [SerializeField] private RSE_ContinuRun _continuRunEvent;
+        [SerializeField] private RSE_CountdownFinished _countdownFinishedEvent;
+        [SerializeField] private RSE_RequestCoundown _requestCoundownEvent;
         
         [SerializeField] private RSO_StageLengthRows _stageLengthRows;
         [SerializeField] private RSO_InStageDistanceRows inStageDistanceRows;
@@ -23,15 +26,18 @@ namespace Stage
         private void OnEnable()
         {
             _runStartedEvent.Event += Initialize;
-            _continuRunEvent.Event += GoNextStage;
+            _continuRunEvent.Event += StartCountdownBeforeStage;
             inStageDistanceRows.OnChanged += UpdateStagePhase;
+            _countdownFinishedEvent.Event += StartStage;
         }
 
         private void OnDisable()
         {
             _runStartedEvent.Event -= Initialize;
-            _continuRunEvent.Event -= GoNextStage;
+            _continuRunEvent.Event -= StartCountdownBeforeStage;
             inStageDistanceRows.OnChanged -= UpdateStagePhase;
+            _countdownFinishedEvent.Event -= StartStage;
+            
         }
 
         private float _durationDecreasePerStage = 3f;
@@ -39,12 +45,11 @@ namespace Stage
         private void Initialize()
         {
             _currentStage.Value = 1;
-            StartStage();
+            StartCountdownBeforeStage();
         }
 
         private void StartStage()
         {
-            Debug.Log("Start new Stage");
             int n = _currentStage.Value;
             float duration = Mathf.Max(
                 _gameConfig.minStageDurationSeconds,
@@ -68,6 +73,11 @@ namespace Stage
             Debug.Log("Go next stage");
             _currentStage.Value++;
             StartStage();
+        }
+
+        private void StartCountdownBeforeStage()
+        {
+            _requestCoundownEvent.Dispatch(3);
         }
     }
 }

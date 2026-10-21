@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Boss;
+using Countdown;
 using JetBrains.Annotations;
 using Player;
 using Speed;
@@ -17,6 +18,7 @@ public class ChunkManager : MonoBehaviour
     [SerializeField] private RSO_InStageDistanceRows _inStageDistanceRows;
     [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
     [SerializeField] private RSO_BossActive _bossActive;
+    [SerializeField] private RSO_CountdownActive _countdownActive;
     
     [SerializeField] private SSO_GameConfig _gameConfig;
     [SerializeField] private List<GameObject> _chunkPrefabs;
@@ -48,7 +50,7 @@ public class ChunkManager : MonoBehaviour
 
     private void Update()
     {
-        if (_bossActive.Value) return;
+        if (IsMovementActive()) return;
         float deltaMeters = _speed.Value * Time.deltaTime;
         float deltaRows = deltaMeters / _gameConfig.rowDepthR;
         _inStageDistanceRows.Value += deltaRows;
@@ -89,5 +91,10 @@ public class ChunkManager : MonoBehaviour
         }
         if (eligible.Count == 0) return null;
         return eligible[_rng.Next(eligible.Count)];
+    }
+
+    private bool IsMovementActive()
+    {
+        return _bossActive.Value || _countdownActive.Value;
     }
 }

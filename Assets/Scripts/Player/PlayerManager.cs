@@ -1,5 +1,6 @@
 using System.Collections;
 using Boss;
+using Countdown;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -16,6 +17,7 @@ namespace Player
 
         [SerializeField] private RSO_CurrentLine _currentLine;
         [SerializeField] private RSO_BossActive _bossActive;
+        [SerializeField] private RSO_CountdownActive _countdownActive;
         
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
@@ -76,13 +78,13 @@ namespace Player
 
         private void OnMoveLeftRequested(InputAction.CallbackContext _)
         {
-            if (_bossActive.Value) return;
+            if (IsPlayerCanMove()) return;
             RequestLineMovement(-1);
         }
 
         private void OnMoveRightRequested(InputAction.CallbackContext _)
         {
-            if (_bossActive.Value) return;
+            if (IsPlayerCanMove()) return;
             RequestLineMovement(1);
         } 
 
@@ -144,7 +146,7 @@ namespace Player
         
         private void OnJumpRequested(InputAction.CallbackContext _)
         {
-            if (_bossActive.Value) return;
+            if (IsPlayerCanMove()) return;
             if (_isJumping || _isSliding) return;
             StartCoroutine(JumpCoroutine());
         }
@@ -176,7 +178,7 @@ namespace Player
 
         private void OnSlideRequested(InputAction.CallbackContext _)
         {
-            if (_bossActive.Value) return;
+            if (IsPlayerCanMove()) return;
             if (_isJumping || _isSliding) return;
             _slideCoroutine = StartCoroutine(SlideCoroutine());
         }
@@ -213,8 +215,13 @@ namespace Player
 
         private void OnUsePowerUpRequested(InputAction.CallbackContext context)
         {
-            //TODO autorisé l'utilisation du croissant seuelement
-            if (_bossActive.Value) _usePowerUpRequestedEvent.Dispatch();
+            if (IsPlayerCanMove()) return;
+            _usePowerUpRequestedEvent.Dispatch();
+        }
+
+        private bool IsPlayerCanMove()
+        {
+            return _bossActive.Value || _countdownActive.Value;
         }
 
     }

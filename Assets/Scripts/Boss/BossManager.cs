@@ -4,7 +4,6 @@ using Health;
 using Random = UnityEngine.Random;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Boss
 {
@@ -149,12 +148,12 @@ namespace Boss
         
         private void Success()
         {
+            _capturing = false;
             _BossDefeatedEvent.Dispatch(0);
         }
 
         private void OnContinueRun()
         {
-            _capturing = false;
             _bossActive.Value = false;
         }
     }
