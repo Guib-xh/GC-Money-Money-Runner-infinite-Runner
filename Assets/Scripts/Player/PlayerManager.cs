@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using Boss;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -15,6 +15,7 @@ namespace Player
         [SerializeField] private InputActionReference _usePowerUpActionReference;
 
         [SerializeField] private RSO_CurrentLine _currentLine;
+        [SerializeField] private RSO_BossActive _bossActive;
         
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
@@ -47,6 +48,7 @@ namespace Player
             _moveRightInputActionReference.action.performed -= OnMoveRightRequested;
             _jumpInputActionReference.action.performed -= OnJumpRequested;
             _slideInputActionReference.action.performed -= OnSlideRequested;
+            _usePowerUpActionReference.action.performed -= OnUsePowerUpRequested;
 
             _runStartedEvent.Event -= Initialize;
         }
@@ -61,16 +63,28 @@ namespace Player
             _isJumping = false;
 
             _currentLine.Value = (_gameConfig.lineCount - 1) / 2;
-
         }
+        
+        //COLLISION
 
         private void OnTriggerEnter(Collider other)
         {
             other.GetComponentInParent<IRunnerTrigger>()?.OnPlayerTrigger();
         }
+        
+        //MOUVEMENTS GAUCHE / DROITE
 
-        private void OnMoveLeftRequested(InputAction.CallbackContext context) => RequestLineMovement(-1);
-        private void OnMoveRightRequested(InputAction.CallbackContext context) => RequestLineMovement(1);
+        private void OnMoveLeftRequested(InputAction.CallbackContext _)
+        {
+            if (_bossActive.Value) return;
+            RequestLineMovement(-1);
+        }
+
+        private void OnMoveRightRequested(InputAction.CallbackContext _)
+        {
+            if (_bossActive.Value) return;
+            RequestLineMovement(1);
+        } 
 
         private void RequestLineMovement(int direction)
         {
@@ -125,8 +139,12 @@ namespace Player
             p.x = newX;
             transform.localPosition = p;
         }
-        private void OnJumpRequested(InputAction.CallbackContext context)
+        
+        //MOUVEMENTS SAUT
+        
+        private void OnJumpRequested(InputAction.CallbackContext _)
         {
+            if (_bossActive.Value) return;
             if (_isJumping || _isSliding) return;
             StartCoroutine(JumpCoroutine());
         }
@@ -153,9 +171,12 @@ namespace Player
             p.y = height;
             transform.localPosition = p;
         }
+        
+        //MOUVEMENTS SLIDE
 
-        private void OnSlideRequested(InputAction.CallbackContext context)
+        private void OnSlideRequested(InputAction.CallbackContext _)
         {
+            if (_bossActive.Value) return;
             if (_isJumping || _isSliding) return;
             _slideCoroutine = StartCoroutine(SlideCoroutine());
         }
@@ -187,10 +208,13 @@ namespace Player
             s.y = scaleY;
             transform.localScale = s;
         }
+        
+        //UTilisation PowerUp
 
         private void OnUsePowerUpRequested(InputAction.CallbackContext context)
         {
-            _usePowerUpRequestedEvent.Dispatch();
+            //TODO autorisé l'utilisation du croissant seuelement
+            if (_bossActive.Value) _usePowerUpRequestedEvent.Dispatch();
         }
 
     }

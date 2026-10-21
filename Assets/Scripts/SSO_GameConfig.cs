@@ -37,5 +37,9 @@ public class SSO_GameConfig: ScriptableObject
     public int scorePerMoney = 10;
     public int scorePerRow = 15;
     public int scorePerBoss = 2000;
+    
+    //QTE
+    public float qteFailPauseSeconds = 2f;
+    public float keyPressedWindownDuration = 1f;
 
 }

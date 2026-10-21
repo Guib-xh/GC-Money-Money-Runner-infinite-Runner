@@ -1,6 +1,7 @@
 using Player;
 using Stage;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Speed
 {
@@ -15,7 +16,8 @@ namespace Speed
         [SerializeField] private RSE_RunStarted _runStarted;
         [SerializeField] private RSE_ActivateCoffeeRequested _activateCoffeeRequestedEvent;
         [SerializeField] private RSE_DesactivateCoffeeRequested _desactivateCoffeeRequestedEvent;
-
+        [SerializeField] private RSE_BossStarted _bossStartedEvent;
+        
         [SerializeField] private SSO_GameConfig _gameConfig;
         
         private float _slowSpeedMultiplier;
@@ -41,7 +43,7 @@ namespace Speed
         {
             _slowSpeedMultiplier = 1f;
             _kv.Value = KvBase(1);
-            CalculateSpeed();
+            ComputeSpeed();
         }
 
         private void Update()
@@ -54,14 +56,14 @@ namespace Speed
                                 0f; 
             float target = Mathf.Lerp(kvStart, kvEnd, progressSpeed);
             _kv.Value = target;
-            CalculateSpeed();
+            ComputeSpeed();
             //Debug.Log("_stageLengthRows :" + _stageLengthRows.Value);
             //Debug.Log("_distanceRowsInStage :" + _inStageDistanceRows.Value);
             //Debug.Log("progressSpeed :" + progressSpeed);
-            Debug.Log("speed :" + _speed.Value);
+            //Debug.Log("speed :" + _speed.Value);
         }
 
-        private void CalculateSpeed()
+        private void ComputeSpeed()
         {
             _speed.Value = _kv.Value * _gameConfig.v0 * _slowSpeedMultiplier;
             
@@ -76,6 +78,7 @@ namespace Speed
         {
             _slowSpeedMultiplier = 1f;
         }
+        
     }
 }
     

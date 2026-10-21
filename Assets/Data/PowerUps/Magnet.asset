@@ -16,5 +16,5 @@ MonoBehaviour:
   Icon: {fileID: 1535325516486818496, guid: e6e3f382e7ed84aeeb125d002a211e68, type: 3}
   DurationRows: 12
   SpawnProbability: 15
-  _activateSkillEvent: {fileID: 11400000, guid: 50692923170e04b64a98fe33ad06b651, type: 2}
-  _desactivateSkillEvent: {fileID: 11400000, guid: bc43a6ec1030d4e708f8c5a4c22572c4, type: 2}
+  _activatePowerUpEvent: {fileID: 11400000, guid: 50692923170e04b64a98fe33ad06b651, type: 2}
+  _desactivatePowerUpEvent: {fileID: 11400000, guid: bc43a6ec1030d4e708f8c5a4c22572c4, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2e9669013a48a69b23f7017606bfe6, type: 3}
+  m_Name: SSO_QTEKeyVisual
+  m_EditorClassIdentifier: Assembly-CSharp::SSO_QTEKeyVisual
+  _values:
+  - key: 0
+    value: {fileID: 8678755261967223820, guid: af57ea2be8ed748ad964ac18aa36cc99, type: 3}
+  - key: 1
+    value: {fileID: 873824298280834114, guid: ecc2d9b86b2ef4fee8f4131ed416a5ff, type: 3}
+  - key: 3
+    value: {fileID: -6245405133398615225, guid: fafa02cd77891467cae8da5620d4efff, type: 3}
+  - key: 2
+    value: {fileID: 1096502926362582948, guid: 416205cc9778f487bbd6331b80f6b64f, type: 3}
+  - key: 4
+    value: {fileID: -1453350334737186109, guid: 9ad417f8872314b7bb99bd3568156294, type: 3}

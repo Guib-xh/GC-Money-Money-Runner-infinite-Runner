@@ -51,10 +51,11 @@ MonoBehaviour:
   _moveRightInputActionReference: {fileID: 2483551265786942260, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
   _jumpInputActionReference: {fileID: -4416877325436722799, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
   _slideInputActionReference: {fileID: -5774040444522855998, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
-  _usePowerUpActionReference: {fileID: 0}
+  _usePowerUpActionReference: {fileID: -7189898962230513785, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
   _currentLine: {fileID: 11400000, guid: 5c5d8283229914a3aa057bf8dd7e33c5, type: 2}
+  _bossActive: {fileID: 11400000, guid: f15e2fd4e86c14973b54690d521fd0c3, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
-  _usePowerUpRequestedEvent: {fileID: 0}
+  _usePowerUpRequestedEvent: {fileID: 11400000, guid: ec1e44c365a8c459a8a17479bd48397f, type: 2}
   _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
   _jumpHeightCurve:
     serializedVersion: 2
