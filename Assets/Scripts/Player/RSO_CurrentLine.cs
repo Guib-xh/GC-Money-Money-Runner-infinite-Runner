@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    [CreateAssetMenu(fileName = "RSO_CurrentLine", menuName = "RSO/RSO_CurrentLine")]
+    [CreateAssetMenu(fileName = "RSO_CurrentLine", menuName = "RSO/Player/RSO_CurrentLine")]
     public class RSO_CurrentLine : RuntimeScriptableObject<int>
     {
     }

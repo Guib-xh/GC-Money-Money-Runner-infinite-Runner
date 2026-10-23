@@ -11,28 +11,42 @@ using UnityEngine.Serialization;
 
 public class ChunkManager : MonoBehaviour
 {
-    [SerializeField] private RSE_RunStarted _runStarted;
     
-    [SerializeField] private RSO_CurrentLine _currentLine;
-    [SerializeField] private RSO_Speed _speed;
-    [SerializeField] private RSO_InStageDistanceRows _inStageDistanceRows;
-    [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
-    [SerializeField] private RSO_BossActive _bossActive;
-    [SerializeField] private RSO_CountdownActive _countdownActive;
-    
+    //GAME CONFIG
     [SerializeField] private SSO_GameConfig _gameConfig;
     [SerializeField] private List<GameObject> _chunkPrefabs;
     
+    //DISPATCH
+        
+    //LISTEN
+    [SerializeField] private RSE_RunStarted _runStarted;
+    
+    //WRITE
+        
+    //READ
+    [SerializeField] private RSO_Speed _speed;
+    [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
+    [SerializeField] private RSO_BossActive _bossActive;
+    [SerializeField] private RSO_CountdownActive _countdownActive;
+    [SerializeField] private RSO_CurrentLine _currentLine;
+
     private List<GameObject> _activeChunk = new ();
     private System.Random _rng;
     private String _lastChunkId;
     private float _nextSpawnPositionZ;
     private int CHUNK_LENGHT_ROW = 10;
     private int _seed;
-    
-    
-    private void OnEnable() => _runStarted.Event += Initialize;
-    private void OnDisable() => _runStarted.Event -= Initialize;
+
+
+    private void OnEnable()
+    {
+         _runStarted.Event += Initialize;
+    }
+
+    private void OnDisable()
+    {
+        _runStarted.Event -= Initialize;
+    } 
 
     private void Initialize()
     {
@@ -53,7 +67,6 @@ public class ChunkManager : MonoBehaviour
         if (IsMovementActive()) return;
         float deltaMeters = _speed.Value * Time.deltaTime;
         float deltaRows = deltaMeters / _gameConfig.rowDepthR;
-        _inStageDistanceRows.Value += deltaRows;
         _totalDistanceRows.Value += deltaRows;
         _nextSpawnPositionZ -= deltaMeters;
 

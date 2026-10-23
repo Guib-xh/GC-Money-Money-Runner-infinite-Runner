@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Loot
 {
-    [CreateAssetMenu(fileName = "SSO_PowerUp", menuName = "SSO/SSO_PowerUp")]
+    [CreateAssetMenu(fileName = "SSO_PowerUp", menuName = "SSO/PowerUp/SSO_PowerUp")]
     public class SSO_PowerUp : ScriptableObject
     {
         public string DisplayName;

@@ -10,32 +10,37 @@ namespace Boss
     public enum QTEKey { MoveLeft, MoveRight, Jump, Slide, UsePowerUp }
     public class BossManager : MonoBehaviour
     {
+        //GAME CONFIG
+        [SerializeField] private SSO_GameConfig _gameConfig;
+        
+        //DISPATCH
+        [SerializeField] private RSE_NewQTEStequenceStarted _newQTEStequenceStartedEvent;
+        [SerializeField] private RSE_QTEFailed _QTEFailedEvent;
+        [SerializeField] private RSE_BossDefeated _BossDefeatedEvent;
+        [SerializeField] private RSE_QTEStepAdvanced _QTEStepAdvancedEvent;
+        
+        //LISTEN
         [SerializeField] private InputActionReference _moveLeftInputActionReference;
         [SerializeField] private InputActionReference _moveRightInputActionReference;
         [SerializeField] private InputActionReference _jumpInputActionReference;
         [SerializeField] private InputActionReference _slideInputActionReference;
         [SerializeField] private InputActionReference _usePowerUpActionReference;
         
-        
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
-        [SerializeField] private RSE_NewQTEStequenceStarted _newQTEStequenceStartedEvent;
-        [SerializeField] private RSE_QTEFailed _QTEFailedEvent;
-        [SerializeField] private RSE_BossDefeated _BossDefeatedEvent;
-        [SerializeField] private RSE_QTEStepAdvanced _QTEStepAdvancedEvent;
         [SerializeField] private RSE_ContinuRun _continuRunEvent;
+        [SerializeField] private RSE_BossUIIntroFinished _bossUIIntroFinishedEvent;
         
+        //WRITE
         [SerializeField] private RSO_BossActive _bossActive;
         [SerializeField] private RSO_CurrentQTEStep _currentQTEStep;
-        [SerializeField] private RSO_Hearts _hearts;
         [SerializeField] private RSO_QTESequence _QTESequence;
         [SerializeField] private RSO_QTEKeyPressedWindowProgress _keyPressedWindowProgress;
         
-        [SerializeField] private SSO_GameConfig _gameConfig;
-        
-        
-        private QTEKey[] _keyOrder =
-            { QTEKey.MoveLeft, QTEKey.MoveRight, QTEKey.Jump, QTEKey.Slide, QTEKey.UsePowerUp };
+        //READ
+        [SerializeField] private RSO_Hearts _hearts;
+
+        private QTEKey[] _keyOrder = { QTEKey.MoveLeft, QTEKey.MoveRight, QTEKey.Jump, QTEKey.Slide, QTEKey.UsePowerUp };
         private bool _capturing = false;
 
         private int _sequenceLength = 3; //TODO rendre ça configurable par stage
@@ -53,6 +58,7 @@ namespace Boss
             _bossStartedEvent.Event += StartBoss;
             _continuRunEvent.Event += OnContinueRun;
             _runStartedEvent.Event += Initialize;
+            _bossUIIntroFinishedEvent.Event += StartNewQTESequence;
         }
 
         private void OnDisable()
@@ -64,6 +70,7 @@ namespace Boss
             _usePowerUpActionReference.action.performed += OnUseItemPressed;
             
             _bossStartedEvent.Event -= StartBoss;
+            _bossUIIntroFinishedEvent.Event -= StartNewQTESequence;
             _continuRunEvent.Event -= OnContinueRun;
             _runStartedEvent.Event -= Initialize;
         }
@@ -111,14 +118,15 @@ namespace Boss
 
         private void StartBoss()
         {
+            Debug.Log("StartBoss");
             _bossActive.Value = true;
             _QTESequence.Value = new List<QTEKey>();
-            StartNewQTESequence();
         }
 
         //Genere une nouvelle séquence de QTE
         private void StartNewQTESequence()
         {
+            Debug.Log("StartNewQTESequence");
             _QTESequence.Value.Clear();
             for (int i = 0; i < _sequenceLength; i++)
             {

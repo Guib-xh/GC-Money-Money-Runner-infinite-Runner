@@ -7,11 +7,19 @@ namespace Countdown
 {
     public class CountdownManager : MonoBehaviour
     {
+        //DISPATCH
         [SerializeField] private RSE_CountdownFinished _countdownFinishedEvent;
+        
+        //LISTEN
         [SerializeField] private RSE_RequestCoundown _requestCoundownEvent;
         
+        //WRITE
         [SerializeField] private RSO_Countdown _countdown;
         [SerializeField] private RSO_CountdownActive _countdownActive;
+        
+        //READ
+        
+
         
         private Coroutine _countdownRoutine;
         

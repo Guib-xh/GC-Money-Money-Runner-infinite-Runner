@@ -9,22 +9,30 @@ namespace Player
 {
     public class PlayerManager : MonoBehaviour
     {
+        //GAME CONFIG
+        [SerializeField] private SSO_GameConfig _gameConfig;
+        [SerializeField] private AnimationCurve _jumpHeightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        
+        //DISPATCH
+        [SerializeField] private RSE_MoveLeft _moveLeftEvent;
+        [SerializeField] private RSE_MoveRight _moveRightEvent;
+        [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
+        
+        //LISTEN
         [SerializeField] private InputActionReference _moveLeftInputActionReference;
         [SerializeField] private InputActionReference _moveRightInputActionReference;
         [SerializeField] private InputActionReference _jumpInputActionReference;
         [SerializeField] private InputActionReference _slideInputActionReference;
         [SerializeField] private InputActionReference _usePowerUpActionReference;
-
-        [SerializeField] private RSO_CurrentLine _currentLine;
-        [SerializeField] private RSO_BossActive _bossActive;
-        [SerializeField] private RSO_CountdownActive _countdownActive;
         
         [SerializeField] private RSE_RunStarted _runStartedEvent;
-        [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
-
-        [SerializeField] private SSO_GameConfig _gameConfig;
-
-        [SerializeField] private AnimationCurve _jumpHeightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        
+        //WRITE
+        [SerializeField] private RSO_CurrentLine _currentLine;
+        
+        //READ
+        [SerializeField] private RSO_BossActive _bossActive;
+        [SerializeField] private RSO_CountdownActive _countdownActive;
 
         private int _pendingLineMove;
         private bool _isMovingLine;
@@ -65,6 +73,7 @@ namespace Player
             _isJumping = false;
 
             _currentLine.Value = (_gameConfig.lineCount - 1) / 2;
+            SetX(0);
         }
         
         //COLLISION
@@ -79,12 +88,14 @@ namespace Player
         private void OnMoveLeftRequested(InputAction.CallbackContext _)
         {
             if (IsPlayerCanMove()) return;
+            _moveLeftEvent.Dispatch();
             RequestLineMovement(-1);
         }
 
         private void OnMoveRightRequested(InputAction.CallbackContext _)
         {
             if (IsPlayerCanMove()) return;
+            _moveRightEvent.Dispatch();
             RequestLineMovement(1);
         } 
 

@@ -6,18 +6,27 @@ using Random = UnityEngine.Random;
 
 namespace PowerUp
 {
+
     public class PowerUpManager : MonoBehaviour
     {
+        //GAME CONFIG 
+        [SerializeField] private List<SSO_PowerUp> _availablePowerUps;
+        
+        //DISPATCH
+        
+        //LISTEN
+        [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_LootCollected _lootCollectedEvent;
         [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
-        [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_ShieldConsumned _shieldConsumnedEvent;
         
+        //WRITE
         [SerializeField] private RSO_HeldPowerUp _heldPowerUp;
         [SerializeField] private RSO_ActivePowerUp _activePowerUp;
+        
+        //READ
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
         
-        [SerializeField] private List<SSO_PowerUp> _availablePowerUps;
         
         private float _startDistance;
 

@@ -3,26 +3,37 @@ using Countdown;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace UI
+namespace Menu
 {
     public class MenuManager : MonoBehaviour
     {
-        [SerializeField] private RSE_RunStarted _rseRunStartedEvent;
+        //DISPATCH
+        [SerializeField] private RSE_RunStarted _runStartedEvent;
+        
+        //LISTEN
+        [SerializeField] private RSE_GameOver _gameOverEvent;
         [SerializeField] private RSE_ReturnToMainMenu _returnToMainMenuEvent;
         
+        //WRITE
+        
+        //READ
+
         [SerializeField] private GameObject _runRoot;
         [SerializeField] private GameObject _mainMenuRoot;
+        [SerializeField] private GameObject _gameOverRoot;
         
         private void Start() => ShowMainMenu();
 
         private void OnEnable()
         {
             _returnToMainMenuEvent.Event += ShowMainMenu;
+            _gameOverEvent.Event += ShowGameOver;
         }
 
         private void OnDisable()
         {
             _returnToMainMenuEvent.Event -= ShowMainMenu;
+            _gameOverEvent.Event -= ShowGameOver;
         }
 
 
@@ -30,12 +41,19 @@ namespace UI
         {
             _mainMenuRoot.SetActive(false);
             _runRoot.SetActive(true);
-            _rseRunStartedEvent.Dispatch();
+            _runStartedEvent.Dispatch();
         }
 
         private void ShowMainMenu()
         {
             _mainMenuRoot.SetActive(true);
+            _gameOverRoot.SetActive(false);
+            _runRoot.SetActive(false);
+        }
+
+        private void ShowGameOver()
+        {
+            _gameOverRoot.SetActive(true);
             _runRoot.SetActive(false);
         }
     }

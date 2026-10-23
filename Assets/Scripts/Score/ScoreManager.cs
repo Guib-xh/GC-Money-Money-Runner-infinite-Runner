@@ -6,14 +6,22 @@ namespace Score
 {
     public class ScoreManager : MonoBehaviour
     {
-        [SerializeField] private RSE_LootCollected _lootCollectedEvent;
-        [SerializeField] private RSE_RunStarted _runStartedEvent;
+        //GAME CONFIG
+        [SerializeField] private SSO_GameConfig _gameConfig;
         
+        //DISPATCH
+        
+        //LISTEN
+        [SerializeField] private RSE_RunStarted _runStartedEvent;
+        [SerializeField] private RSE_LootCollected _lootCollectedEvent;
+        
+        //WRITE
         [SerializeField] private RSO_Score _score;
+        
+        //READ
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
         [SerializeField] private RSO_MoneyInRun _moneyInRun;
         
-        [SerializeField] private SSO_GameConfig _gameConfig;
         
 
         

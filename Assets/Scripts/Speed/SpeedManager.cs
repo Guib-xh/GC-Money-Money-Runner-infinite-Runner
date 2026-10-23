@@ -7,18 +7,24 @@ namespace Speed
 {
     public class SpeedManager : MonoBehaviour
     {
-        [SerializeField] private RSO_Speed _speed;
-        [SerializeField] private RSO_Kv _kv;
-        [SerializeField] private RSO_CurrentStage _currentStage;
-        [SerializeField] private RSO_InStageDistanceRows _inStageDistanceRows;
-        [SerializeField] private RSO_StageLengthRows _stageLengthRows;
+        //GAME CONFIG
+        [SerializeField] private SSO_GameConfig _gameConfig;
         
+        //DISPATCH
+        
+        //LISTEN
         [SerializeField] private RSE_RunStarted _runStarted;
         [SerializeField] private RSE_ActivateCoffeeRequested _activateCoffeeRequestedEvent;
         [SerializeField] private RSE_DesactivateCoffeeRequested _desactivateCoffeeRequestedEvent;
-        [SerializeField] private RSE_BossStarted _bossStartedEvent;
         
-        [SerializeField] private SSO_GameConfig _gameConfig;
+        //WRITE
+        [SerializeField] private RSO_Speed _speed;
+        [SerializeField] private RSO_Kv _kv;
+        
+        //READ
+        [SerializeField] private RSO_CurrentStage _currentStage;
+        [SerializeField] private RSO_InStageDistanceRows _inStageDistanceRows;
+        [SerializeField] private RSO_StageLengthRows _stageLengthRows;
         
         private float _slowSpeedMultiplier;
 
@@ -48,6 +54,7 @@ namespace Speed
 
         private void Update()
         {
+            if (_currentStage.Value == 0) return;
             int stage = _currentStage.Value;
             float kvStart = KvBase(stage);
             float kvEnd = KvBase(stage + 1);

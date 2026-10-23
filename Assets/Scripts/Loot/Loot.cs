@@ -5,11 +5,20 @@ namespace Loot
 {
     public class Loot : MonoBehaviour, IRunnerTrigger
     {
-        
-        [SerializeField] private RSE_LootCollected _lootCollectedEvent;
-        
+        //GAME CONFIG
         [SerializeField] private SSO_GameConfig _gameConfig;
         [SerializeField] private SSO_LootItem _lootItem;
+        
+        //DISPATCH
+        [SerializeField] private RSE_LootCollected _lootCollectedEvent;
+        
+        //LISTEN
+        
+        //WRITE
+        
+        //READ
+        
+
         
         private bool _collected;
         

@@ -2,20 +2,28 @@ using System;
 using System.IO;
 using System.Linq;
 using Player;
+using Stage;
 using UnityEngine;
 
 namespace Save
 {
     public class SaveManager : MonoBehaviour
     {
+        //GAME CONFIG
+        [SerializeField] private SSO_GameConfig _gameConfig;
+        
+        //DISPATCH
+        
+        //LISTEN
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_GameOver _gameOverEvent;
         
+        //WRITE
         
+        //READ
         [SerializeField] private RSO_Score _score;
         [SerializeField] private RSO_CurrentStage _currentStage;
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
-        [SerializeField] private SSO_GameConfig _gameConfig;
         
         private float _runStartTime;
         

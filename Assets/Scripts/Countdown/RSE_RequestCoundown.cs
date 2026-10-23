@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Countdown
 {
-    [CreateAssetMenu(fileName = "RSE_RequestCoundown", menuName = "Events/RSE_RequestCoundown")]
+    [CreateAssetMenu(fileName = "RSE_RequestCoundown", menuName = "Events/Countdown/RSE_RequestCoundown")]
     public class RSE_RequestCoundown : RuntimeScriptableEvent<int>
     {
     }

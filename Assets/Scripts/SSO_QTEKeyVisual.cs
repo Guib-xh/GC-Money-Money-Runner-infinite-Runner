@@ -10,7 +10,7 @@ public class SSO_QTEKeyVisual: ScriptableObject
 
     public Sprite GetSprite(QTEKey key)
     {
-        Debug.Log("QTEKey " + key + " : " + _values[key].name);
+        //Debug.Log("QTEKey " + key + " : " + _values[key].name);
         return _values[key];
     } 
 }

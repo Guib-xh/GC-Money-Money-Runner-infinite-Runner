@@ -7,10 +7,16 @@ namespace Countdown
 {
     public class CountdownDisplay : MonoBehaviour
     {
-        [SerializeField] private RSE_CountdownFinished _countdownFinishedEvent;
-        [SerializeField] private RSE_RequestCoundown _requestCoundownEvent;
+        //DISPATCH
         
+        //LISTEN
+        
+        //WRITE
+        
+        //READ
         [SerializeField] private RSO_Countdown _countdown;
+        
+        
         
         [SerializeField] private TMP_Text _countdownText;
         [SerializeField] private GameObject _countdownCanvas;
