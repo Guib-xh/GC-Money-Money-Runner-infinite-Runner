@@ -31,7 +31,6 @@ namespace Boss
 
         //UI
         [SerializeField] private GameObject _bossCanvas;
-        [SerializeField] private GameObject _interStageCanvas;
         [SerializeField] private TMP_Text _bossText;
         [SerializeField] private Image _progressBarFill;
         
@@ -67,7 +66,6 @@ namespace Boss
         private void Initialize()
         {
             _bossCanvas.SetActive(false);
-            _interStageCanvas.SetActive(false);
             _bossText.gameObject.SetActive(false);
             _progressBarFill.gameObject.SetActive(false);
         }
@@ -137,8 +135,6 @@ namespace Boss
             _bossText.gameObject.SetActive(false);
             _bossCanvas.SetActive(false);
             _progressBarFill.gameObject.SetActive(false);
-
-            _interStageCanvas.SetActive(true);
         }
 
         private void UpdateProgressBar(float value)

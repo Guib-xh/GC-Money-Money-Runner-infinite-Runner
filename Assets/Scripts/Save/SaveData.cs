@@ -4,25 +4,19 @@ using System.Collections.Generic;
 namespace Save
 {
     [Serializable]
-    public class LeaderBoardData
+    public class ProfileData
     {
         public string Pseudo;
-
-        public int Score;
-
+        public int MoneyChest;
+        public int BestScore;
+        public int CatchRubberNumber;
         public int MaxStage;
-        
-        public float DistanceMetres;
-        
-        public float DureeSecondes;
-        
-        public int ArgentRecolte;
-
     }
+
 
     [Serializable]
     public class SaveFile
     {
-        public List<LeaderBoardData> LeaderBoardDataList = new();
+        public ProfileData Profils = new();
     }
 }

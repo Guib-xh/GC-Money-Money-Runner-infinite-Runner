@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Health;
+using Stage;
 using Random = UnityEngine.Random;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -39,6 +40,7 @@ namespace Boss
         
         //READ
         [SerializeField] private RSO_Hearts _hearts;
+        [SerializeField] private RSO_CurrentStage _currentStage;
 
         private QTEKey[] _keyOrder = { QTEKey.MoveLeft, QTEKey.MoveRight, QTEKey.Jump, QTEKey.Slide, QTEKey.UsePowerUp };
         private bool _capturing = false;
@@ -157,12 +159,21 @@ namespace Boss
         private void Success()
         {
             _capturing = false;
-            _BossDefeatedEvent.Dispatch(0);
+            int reward = GetReward();
+            _BossDefeatedEvent.Dispatch(reward);
+        }
+
+        //TODO rendre les valeurs paramétrables
+        private int GetReward()
+        {
+            return Mathf.Min(5500, 500 + _currentStage.Value * 250);
         }
 
         private void OnContinueRun()
         {
             _bossActive.Value = false;
         }
+        
+        
     }
 }
