@@ -23,6 +23,7 @@ namespace PowerUp
         //WRITE
         [SerializeField] private RSO_HeldPowerUp _heldPowerUp;
         [SerializeField] private RSO_ActivePowerUp _activePowerUp;
+        [SerializeField] private RSO_ActivePowerUpTimeRemaining _activePowerUpTimeRemaining;
         
         //READ
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
@@ -59,6 +60,7 @@ namespace PowerUp
             SSO_PowerUp current = _activePowerUp.Value;
             if (current is null) return;
             float traveledDistance = distance - _startDistance;
+            _activePowerUpTimeRemaining.Value = 1f - (traveledDistance / _activePowerUp.Value.DurationRows);
 
             if (traveledDistance >= current.DurationRows) DesactivateCurrent();
         }

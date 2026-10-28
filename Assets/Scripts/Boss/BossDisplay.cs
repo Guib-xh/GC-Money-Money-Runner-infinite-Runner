@@ -99,9 +99,11 @@ namespace Boss
             _bossText.color = Color.white;
             _bossText.gameObject.SetActive(true);
             _bossText.text = "Prêt ?";
+            
             yield return new WaitForSeconds(_readyDuration);
             _bossText.text = "Go !";
             yield return new WaitForSeconds(_goDuration);
+            
             _bossUIIntroFinishedEvent.Dispatch();
         }
 

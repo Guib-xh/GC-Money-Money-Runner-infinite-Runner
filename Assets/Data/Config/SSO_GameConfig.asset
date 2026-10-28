@@ -24,8 +24,8 @@ MonoBehaviour:
   kvGrowthPerStage: 0.5
   v0: 6
   kvMax: 10
-  firstStageDuration: 150
-  minStageDurationSeconds: 130
+  firstStageDuration: 20
+  minStageDurationSeconds: 10
   startingHearts: 3
   postCollisionInvulnerabilitySeconds: 1
   scorePerMoney: 10

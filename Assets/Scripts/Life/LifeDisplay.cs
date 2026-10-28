@@ -14,6 +14,7 @@ namespace UI
         //DISPATCH
         
         //LISTEN
+        [SerializeField] private RSE_RunStarted _runStartedEvent;
         
         //WRITE
         
@@ -22,26 +23,45 @@ namespace UI
         [SerializeField] private RSO_MaxHearts _maxHearts;
         
         //UI
-        [SerializeField] private Image[] _heartIcons;
+        [SerializeField] private Animator[] _heartsUI;
+        
 
         private void OnEnable()
         {
             _hearts.OnChanged += RefreshHearts;
+            _runStartedEvent.Event += Initialize;
         }
         
         private void OnDisable()
         {
 
             _hearts.OnChanged -= RefreshHearts;
+            _runStartedEvent.Event -= Initialize;
+            
+        }
+
+        private void Initialize()
+        {
+            for (int i = 0; i < _heartsUI.Length; i++)
+            {
+                bool active = i < _maxHearts.Value;
+                _heartsUI[i].gameObject.SetActive(active);
+                
+                if (active) _heartsUI[i].SetBool("IsFull", true);
+            } 
+                
         }
         
         private void RefreshHearts(int health)
         {
-            for (int i = 0; i < _heartIcons.Length; i++)
-                //affiche le nombre de coeur possible max (grisé ou non suivant le cas
-                _heartIcons[i].enabled = i < _maxHearts.Value; 
-            for (int i = 0; i < _heartIcons.Length; i++)
-                if (_heartIcons[i].enabled) _heartIcons[i].color = GetHeartsIconColor(i);
+            for (int i = 0; i < _heartsUI.Length; i++)
+            {
+                bool active = i < _maxHearts.Value;
+                
+                _heartsUI[i].gameObject.SetActive(active); 
+                if (active) _heartsUI[i].SetBool("IsFull", i < health);
+            }
+
         }
 
         private Color GetHeartsIconColor(int iconIndex)

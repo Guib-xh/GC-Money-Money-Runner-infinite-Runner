@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe9451995df44eb96bdf73c509c5622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerAnimator
-  _bossStartedEvent: {fileID: 0}
+  _bossStartedEvent: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
+  _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
   _countdownFinishedEvent: {fileID: 11400000, guid: 3ca38aec647fe410cbbaae04a3cc491f, type: 2}
   _moveLeftEvent: {fileID: 11400000, guid: fb14e464dd64a4c53b3d99b6defbaf00, type: 2}
   _moveRightEvent: {fileID: 11400000, guid: ba860e5daef7d4a1eb9fc18079b7323b, type: 2}
@@ -279,10 +280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb7f02505bc4a7e811474ae148be027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp.ShieldDisplay
-  _activateShieldRequestedEvent: {fileID: 0}
-  _desactivateShieldRequestedEvent: {fileID: 0}
-  _shieldConsumned: {fileID: 0}
-  _animator: {fileID: 0}
+  _activateShieldRequestedEvent: {fileID: 11400000, guid: fc5a1fbf4e3b342a190393564da33bc7, type: 2}
+  _desactivateShieldRequestedEvent: {fileID: 11400000, guid: f4f4d44e2ebd9449bb709b83ee0e375c, type: 2}
+  _shieldConsumned: {fileID: 11400000, guid: 693eaafaeaf314e8486894c0617209cf, type: 2}
+  _animator: {fileID: 1809871663166064671}
 --- !u!1 &7444992778592651428
 GameObject:
   m_ObjectHideFlags: 0

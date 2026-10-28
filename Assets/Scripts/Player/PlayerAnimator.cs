@@ -8,6 +8,7 @@ namespace Player
     public class PlayerAnimator : MonoBehaviour
     {
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
+        [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_CountdownFinished _countdownFinishedEvent;
         [SerializeField] private RSE_MoveLeft _moveLeftEvent;
         [SerializeField] private RSE_MoveRight _moveRightEvent;
@@ -21,6 +22,7 @@ namespace Player
         private void OnEnable()
         {
             _bossStartedEvent.Event += StartIdle;
+            _runStartedEvent.Event += StartIdle;
             _countdownFinishedEvent.Event += StartSprint;
             _moveLeftEvent.Event += OnMoveLeft;
             _moveRightEvent.Event += OnMoveRight;
@@ -30,6 +32,7 @@ namespace Player
         private void OnDisable()
         {
             _bossStartedEvent.Event -= StartIdle;
+            _runStartedEvent.Event += StartIdle;
             _countdownFinishedEvent.Event -= StartSprint;
             _moveLeftEvent.Event -= OnMoveLeft;
             _moveRightEvent.Event -= OnMoveRight;

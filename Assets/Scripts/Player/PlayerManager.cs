@@ -74,6 +74,8 @@ namespace Player
 
             _currentLine.Value = (_gameConfig.lineCount - 1) / 2;
             SetX(0);
+            SetHeight(0);
+            SetScaleY(1f);
         }
         
         //COLLISION
@@ -125,7 +127,7 @@ namespace Player
             float t = 0f;
             while (t < _gameConfig.lateralMoveDuration)
             {
-                t += Time.unscaledDeltaTime;
+                t += Time.deltaTime;
                 float p = Mathf.Clamp01(t / _gameConfig.lateralMoveDuration);
                 SetX(Mathf.Lerp(fromX, toX, p));
                 yield return null;
