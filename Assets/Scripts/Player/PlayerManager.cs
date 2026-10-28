@@ -160,7 +160,9 @@ namespace Player
         private void OnJumpRequested(InputAction.CallbackContext _)
         {
             if (IsPlayerCanMove()) return;
-            if (_isJumping || _isSliding) return;
+            if (_isJumping) return;
+            
+            if (_isSliding) StopSlide();
             StartCoroutine(JumpCoroutine());
         }
 

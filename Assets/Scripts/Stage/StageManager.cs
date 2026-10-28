@@ -67,18 +67,25 @@ namespace Stage
         private void StartStage()
         {
             _currentStage.Value++;
+            _inStageDistanceRows.Value = 0;
             int n = _currentStage.Value;
             float duration = Mathf.Max(
                 _gameConfig.minStageDurationSeconds,
                 _gameConfig.firstStageDuration - _durationDecreasePerStage * (n - 1));
-
+            //Debug.Log($"Stage {n}: {duration} seconds");
             _stageLengthRows.Value = _speed.Value * duration / _gameConfig.rowDepthR;
+            //Debug.Log($"Stage {n}: {_speed.Value} m/s");
+            //Debug.Log($"Stage {n}: {_stageLengthRows.Value} m");
+            
         }
 
         private void UpdateStagePhase(float value)
         {
             if (_bossActive.Value || value == 0) return;
+            //Debug.Log($"Stage {_stageLengthRows.Value} total : {value} m");
             _inStageDistanceRows.Value += value - _currentTotalDistanceRows;
+            //Debug.Log($"Stage {_stageLengthRows.Value} - _inStageDistanceRows : {_inStageDistanceRows.Value} m");
+            
             _currentTotalDistanceRows = value;
             if (_inStageDistanceRows.Value >= _stageLengthRows.Value)
             {

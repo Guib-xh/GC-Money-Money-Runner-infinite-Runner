@@ -12,7 +12,7 @@ namespace Boss
     public class BossManager : MonoBehaviour
     {
         //GAME CONFIG
-        [SerializeField] private SSO_GameConfig _gameConfig;
+        [SerializeField] private SSO_BossConfig _bossConfig;
         
         //DISPATCH
         [SerializeField] private RSE_NewQTEStequenceStarted _newQTEStequenceStartedEvent;
@@ -45,7 +45,7 @@ namespace Boss
         private QTEKey[] _keyOrder = { QTEKey.MoveLeft, QTEKey.MoveRight, QTEKey.Jump, QTEKey.Slide, QTEKey.UsePowerUp };
         private bool _capturing = false;
 
-        private int _sequenceLength = 3; //TODO rendre ça configurable par stage
+        private QTEStageConfig _qteStageConfig;
         
         private Coroutine _keyPressedWindowRoutine;
 
@@ -93,20 +93,26 @@ namespace Boss
             if (!_capturing) return; //Afin d'éviter que la touche pressé pendant le jeu ne soit tracké ici
             if (keyPressed != _QTESequence.Value[_currentQTEStep.Value])
             {
-                Fail(); 
+                Fail();
                 return;
             }
+
             _currentQTEStep.Value++;
-            _QTEStepAdvancedEvent.Dispatch();
             if (_keyPressedWindowRoutine != null) StopCoroutine(_keyPressedWindowRoutine);
 
-            if (_currentQTEStep.Value >= _QTESequence.Value.Count) Success();
-            else _keyPressedWindowRoutine = StartCoroutine(KeyPressedWindowTimeout());
+            if (_currentQTEStep.Value >= _QTESequence.Value.Count)
+            {
+                Success();
+            } else
+            {
+                _QTEStepAdvancedEvent.Dispatch();
+                _keyPressedWindowRoutine = StartCoroutine(KeyPressedWindowTimeout());
+            }
         }
         
         private IEnumerator KeyPressedWindowTimeout()
         {
-            float keyPressWindowDuration = _gameConfig.keyPressedWindownDuration;
+            float keyPressWindowDuration = _qteStageConfig.keyPressWindowDuration;
             float elapsedTime = 0;
             _keyPressedWindowProgress.Value = 1f;
             while (elapsedTime < keyPressWindowDuration && _capturing)
@@ -120,7 +126,7 @@ namespace Boss
 
         private void StartBoss()
         {
-            Debug.Log("StartBoss");
+            //Debug.Log("StartBoss");
             _bossActive.Value = true;
             _QTESequence.Value = new List<QTEKey>();
         }
@@ -128,17 +134,28 @@ namespace Boss
         //Genere une nouvelle séquence de QTE
         private void StartNewQTESequence()
         {
-            Debug.Log("StartNewQTESequence");
+            //Debug.Log("StartNewQTESequence");
+             _qteStageConfig = GetQTEStageConfig();
             _QTESequence.Value.Clear();
-            for (int i = 0; i < _sequenceLength; i++)
+            for (int i = 0; i < _qteStageConfig.sequenceLength; i++)
             {
-                _QTESequence.Value.Add(_keyOrder[Random.Range(0, _sequenceLength)]);
+                int keyPoolSize = Mathf.Max(_qteStageConfig.sequenceLength, _bossConfig.maxKeyPoolSize);
+                _QTESequence.Value.Add(_keyOrder[Random.Range(0, keyPoolSize-1)]);
             }
             _currentQTEStep.Value = 0;
             _newQTEStequenceStartedEvent.Dispatch();
             _capturing = true;
             if (_keyPressedWindowRoutine != null) StopCoroutine(_keyPressedWindowRoutine);
             _keyPressedWindowRoutine = StartCoroutine(KeyPressedWindowTimeout());
+        }
+
+        private QTEStageConfig GetQTEStageConfig()
+        {
+            foreach (var qteStageConfig in _bossConfig.qteConfigs)
+            {
+                if (qteStageConfig.stage == _currentStage.Value) return qteStageConfig;
+            }
+            return _bossConfig.qteConfigs[_bossConfig.qteConfigs.Length - 1];
         }
 
         private void Fail()
@@ -152,7 +169,7 @@ namespace Boss
         
         private IEnumerator PauseThenRetry()
         {
-            yield return new WaitForSeconds(_gameConfig.qteFailPauseSeconds);
+            yield return new WaitForSeconds(_bossConfig.qteFailPauseSeconds);
             StartNewQTESequence();
         }
         
