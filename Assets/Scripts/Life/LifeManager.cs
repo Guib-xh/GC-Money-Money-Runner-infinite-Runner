@@ -13,6 +13,7 @@ namespace Health
         
         //DISPATCH
         [SerializeField] private RSE_ShieldConsumned _shieldConsumnedEvent;
+        [SerializeField] private RSE_PlayerDied _playerDiedEvent;
         
         //LISTEN
         [SerializeField] private RSE_ObstacleCollided _obstacleCollidedEvent;
@@ -39,6 +40,8 @@ namespace Health
             _activateCroissantRequestedEvent.Event += Heal;
             _activateShieldRequestedEvent.Event += ActivateShield;
             _desactivateShieldRequestedEvent.Event += DesactivateShield;
+            _hearts.OnChanged += OnHeartsEmpty;
+            
             _qteFailedEvent.Event += TakeDamage;
         }        
         
@@ -49,6 +52,8 @@ namespace Health
             _activateCroissantRequestedEvent.Event -= Heal;
             _activateShieldRequestedEvent.Event -= ActivateShield;
             _desactivateShieldRequestedEvent.Event -= DesactivateShield;
+            _hearts.OnChanged -= OnHeartsEmpty;
+            
             _qteFailedEvent.Event -= TakeDamage;
         }
 
@@ -103,6 +108,11 @@ namespace Health
         {
             //Debug.Log("Desactivate Shield");
             _shieldActive.Value = false;
+        }
+
+        private void OnHeartsEmpty(int _)
+        {
+            if (_hearts.Value == 0) _playerDiedEvent.Dispatch();
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_lootBox
   m_EditorClassIdentifier: Assembly-CSharp::Loot.SSO_LootItem
   DisplayName: Lootbox
-  Value: 100
+  Value: 0
   IsLootBox: 1
-  Prefab: {fileID: 7653566920752164204, guid: 1c73eaa201f0c4236b700ec8a45ddb92, type: 3}
+  Prefab: {fileID: 739709347695802846, guid: c32419ff1d5ca492093e5edea747c5d8, type: 3}
   SpawnWeight: 0.29

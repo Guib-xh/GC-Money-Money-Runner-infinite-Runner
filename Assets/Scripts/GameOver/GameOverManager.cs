@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Health;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace GameOver
         [SerializeField] private RSE_GameOver _gameOverEvent;
         
         //LISTEN
+        [SerializeField] private RSE_PlayerDieAnimationFinished _playerDieAnimationFinishedEvent;
         
         //WRITE
 
@@ -18,17 +20,22 @@ namespace GameOver
 
         private void OnEnable()
         {
-            _hearts.OnChanged += OnHeartsEmpty;
+            _playerDieAnimationFinishedEvent.Event += OnPlayerDieAnimationFinished;
         }
 
         private void OnDisable()
         {
-            _hearts.OnChanged -= OnHeartsEmpty;
+            _playerDieAnimationFinishedEvent.Event -= OnPlayerDieAnimationFinished;
         }
 
-        private void OnHeartsEmpty(int hearts)
+        private void OnPlayerDieAnimationFinished()
         {
-            if (hearts != 0) return;
+            StartCoroutine(GameOverCoroutine());
+        }
+
+        private IEnumerator GameOverCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
             _gameOverEvent.Dispatch();
         }
         

@@ -19,7 +19,8 @@ public class ChunkManager : MonoBehaviour
     //DISPATCH
         
     //LISTEN
-    [SerializeField] private RSE_RunStarted _runStarted;
+    [SerializeField] private RSE_RunStarted _runStartedEvent;
+    [SerializeField] private RSE_PlayerDied _playerDiedEvent;
     
     //WRITE
         
@@ -36,16 +37,20 @@ public class ChunkManager : MonoBehaviour
     private float _nextSpawnPositionZ;
     private int CHUNK_LENGHT_ROW = 10;
     private int _seed;
+    private bool _stopMovement;
 
 
     private void OnEnable()
     {
-         _runStarted.Event += Initialize;
+         _runStartedEvent.Event += Initialize;
+         _playerDiedEvent.Event += OnPlayerDied;
     }
 
     private void OnDisable()
     {
-        _runStarted.Event -= Initialize;
+        _runStartedEvent.Event -= Initialize;
+        _playerDiedEvent.Event -= OnPlayerDied;
+        
     } 
 
     private void Initialize()
@@ -55,6 +60,7 @@ public class ChunkManager : MonoBehaviour
         _lastChunkId = null;
         _nextSpawnPositionZ = 0f;
         _totalDistanceRows.Value = 0f;
+        _stopMovement = false;
         if (_seed == 0) _seed = Environment.TickCount;
         _rng = new System.Random(_seed);
 
@@ -108,6 +114,11 @@ public class ChunkManager : MonoBehaviour
 
     private bool IsMovementActive()
     {
-        return _bossActive.Value || _countdownActive.Value;
+        return _bossActive.Value || _countdownActive.Value || _stopMovement;
+    }
+
+    private void OnPlayerDied()
+    {
+        _stopMovement = true;
     }
 }

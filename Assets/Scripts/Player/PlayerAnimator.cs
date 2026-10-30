@@ -12,6 +12,9 @@ namespace Player
         [SerializeField] private RSE_CountdownFinished _countdownFinishedEvent;
         [SerializeField] private RSE_MoveLeft _moveLeftEvent;
         [SerializeField] private RSE_MoveRight _moveRightEvent;
+        [SerializeField] private RSE_PlayerDied _playerDiedEvent;
+        [SerializeField] private RSE_PlayerDieAnimationFinished _playerDieAnimationFinishedEvent;
+        
         
         [SerializeField] private RSO_Invulnerable _invulnerable;
         
@@ -26,6 +29,7 @@ namespace Player
             _countdownFinishedEvent.Event += StartSprint;
             _moveLeftEvent.Event += OnMoveLeft;
             _moveRightEvent.Event += OnMoveRight;
+            _playerDiedEvent.Event += OnPlayerDied;
             _invulnerable.OnChanged += OnInvulnerable;
         }
         
@@ -36,6 +40,7 @@ namespace Player
             _countdownFinishedEvent.Event -= StartSprint;
             _moveLeftEvent.Event -= OnMoveLeft;
             _moveRightEvent.Event -= OnMoveRight;
+            _playerDiedEvent.Event -= OnPlayerDied;
             _invulnerable.OnChanged -= OnInvulnerable;
         }
 
@@ -57,12 +62,24 @@ namespace Player
         
         private void OnMoveLeft()
         {
+            Debug.unityLogger.Log("MoveLeft");
             _animator.SetTrigger("MoveLeft");
         }
         
         private void OnMoveRight()
         {
+            Debug.unityLogger.Log("MoveRight");
             _animator.SetTrigger("MoveRight");
+        }
+        
+        private void OnPlayerDied()
+        {
+            _animator.SetTrigger("Die");
+        }
+        
+        public void OnDeathAnimationEnd()
+        {
+            _playerDieAnimationFinishedEvent.Dispatch();
         }
     }
     
