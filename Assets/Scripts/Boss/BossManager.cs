@@ -139,7 +139,7 @@ namespace Boss
             _QTESequence.Value.Clear();
             for (int i = 0; i < _qteStageConfig.sequenceLength; i++)
             {
-                int keyPoolSize = Mathf.Max(_qteStageConfig.sequenceLength, _bossConfig.maxKeyPoolSize);
+                int keyPoolSize = Mathf.Min(_qteStageConfig.sequenceLength, _bossConfig.maxKeyPoolSize);
                 _QTESequence.Value.Add(_keyOrder[Random.Range(0, keyPoolSize-1)]);
             }
             _currentQTEStep.Value = 0;
@@ -163,7 +163,7 @@ namespace Boss
             _capturing = false;
             _keyPressedWindowProgress.Value = 0f;
             _QTEFailedEvent.Dispatch();
-            if (_hearts.Value <= 0) return; // Game Over
+            if (_hearts.Value <= 0) return;
             StartCoroutine(PauseThenRetry());
         }
         

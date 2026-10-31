@@ -13,4 +13,38 @@ MonoBehaviour:
   m_Name: SSO_BossConfig
   m_EditorClassIdentifier: Assembly-CSharp::SSO_BossConfig
   qteFailPauseSeconds: 2
-  keyPressedWindownDuration: 1
+  maxKeyPoolSize: 5
+  qteConfigs:
+  - stage: 1
+    sequenceLength: 8
+    keyPressWindowDuration: 0.4
+  - stage: 2
+    sequenceLength: 3
+    keyPressWindowDuration: 1
+  - stage: 3
+    sequenceLength: 4
+    keyPressWindowDuration: 0.8
+  - stage: 4
+    sequenceLength: 4
+    keyPressWindowDuration: 0.8
+  - stage: 5
+    sequenceLength: 5
+    keyPressWindowDuration: 0.7
+  - stage: 6
+    sequenceLength: 5
+    keyPressWindowDuration: 0.7
+  - stage: 7
+    sequenceLength: 6
+    keyPressWindowDuration: 0.6
+  - stage: 8
+    sequenceLength: 6
+    keyPressWindowDuration: 0.6
+  - stage: 9
+    sequenceLength: 7
+    keyPressWindowDuration: 0.5
+  - stage: 10
+    sequenceLength: 7
+    keyPressWindowDuration: 0.5
+  - stage: 11
+    sequenceLength: 8
+    keyPressWindowDuration: 0.4

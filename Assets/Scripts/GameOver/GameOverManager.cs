@@ -30,14 +30,9 @@ namespace GameOver
 
         private void OnPlayerDieAnimationFinished()
         {
-            StartCoroutine(GameOverCoroutine());
-        }
-
-        private IEnumerator GameOverCoroutine()
-        {
-            yield return new WaitForSeconds(1f);
             _gameOverEvent.Dispatch();
         }
+        
         
         
     }

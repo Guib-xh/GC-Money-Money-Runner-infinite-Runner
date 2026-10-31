@@ -6755,9 +6755,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp.PowerUpManager
   _availablePowerUps:
   - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
-  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
-  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
-  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
+  - {fileID: 11400000, guid: 9e43885539dad4c079fa4b16cc94a25d, type: 2}
+  - {fileID: 11400000, guid: 24ba520450b76466fbc818011d3dd3c3, type: 2}
+  - {fileID: 11400000, guid: de807f20ecd5d46dba655d9f9bb23ab1, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
   _lootCollectedEvent: {fileID: 11400000, guid: 7c96fa15546d04b739225ac2ef66f06a, type: 2}
   _usePowerUpRequestedEvent: {fileID: 11400000, guid: ec1e44c365a8c459a8a17479bd48397f, type: 2}
@@ -8891,6 +8891,8 @@ MonoBehaviour:
   _pooledChunk: {fileID: 11400000, guid: f9d1946c6916a4effafb4a3014116983, type: 2}
   _emptyChunkPrefabs:
   - {fileID: 4096895978833420694, guid: 17a0f9988badc4e7682469106fb7d7cf, type: 3}
+  - {fileID: 4096895978833420694, guid: 77b8a2f5c4d3445a5a94b96a945349b1, type: 3}
+  - {fileID: 4096895978833420694, guid: 72c1bd4a0f6f94138aea80857727f89a, type: 3}
   _itemPrefabs:
   - key: BILLET
     value: {fileID: 534890297318871027, guid: fb806efc242634f81b9478ad64f8dae2, type: 3}

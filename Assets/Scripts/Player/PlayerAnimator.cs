@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Boss;
 using Countdown;
 using UnityEngine;
@@ -36,12 +37,15 @@ namespace Player
         private void OnDisable()
         {
             _bossStartedEvent.Event -= StartIdle;
-            _runStartedEvent.Event += StartIdle;
+            _runStartedEvent.Event -= StartIdle;
             _countdownFinishedEvent.Event -= StartSprint;
             _moveLeftEvent.Event -= OnMoveLeft;
             _moveRightEvent.Event -= OnMoveRight;
             _playerDiedEvent.Event -= OnPlayerDied;
             _invulnerable.OnChanged -= OnInvulnerable;
+            
+
+            _animator.SetBool("Sprint", false);
         }
 
         private void StartIdle()
@@ -79,6 +83,17 @@ namespace Player
         
         public void OnDeathAnimationEnd()
         {
+            StartCoroutine(GameOverCoroutine());
+        }
+
+        private IEnumerator GameOverCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            _animator.ResetTrigger("Die");
+            _animator.SetTrigger("Revive");
+            yield return new WaitForSeconds(0.01f); //TODO faire plus propre 
+            
             _playerDieAnimationFinishedEvent.Dispatch();
         }
     }

@@ -12,22 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339440d13cde489386ccf543a4b56308, type: 3}
   m_Name: SSO_GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::SSO_GameConfig
-  lineCount: 5
+  laneCount: 5
   laneWidthLv: 2
   rowDepthR: 2
   visibilityRows: 40
   despawnBehind: -50
-  chunkLengthRow: 10
   jumpHeight: 3
   lateralMoveDuration: 0.25
   jumpDuration: 1.2
   slideDuration: 1.2
   slideHeightScale: 0.5
-  kvGrowthPerStage: 0.4
-  v0: 6
-  kvMax: 4
-  firstStageDuration: 150
-  minStageDurationSeconds: 120
+  kvGrowthPerStage: 1
+  v0: 8
+  kvMax: 8
+  firstStageDuration: 10
+  minStageDurationSeconds: 10
   startingHearts: 3
   postCollisionInvulnerabilitySeconds: 1
   scorePerMoney: 10
