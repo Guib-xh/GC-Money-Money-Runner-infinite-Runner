@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D1_B",
+  "name": "Nid-de-poule",
+  "type": "Butin",
+  "difficulty": 1,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["BILLET", "", "", "", "BILLET"] },
+    { "lanes": ["BILLET", "", "", "", "BILLET"] },
+    { "lanes": ["", "BILLET", "", "BILLET", ""] },
+    { "lanes": ["", "BILLET", "", "BILLET", ""] },
+    { "lanes": ["", "", "LIASSE", "", ""] },
+    { "lanes": ["", "", "OBS_BAS", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["BILLET", "", "LIASSE", "", "BILLET"] },
+    { "lanes": ["BILLET", "", "", "", "BILLET"] },
+    { "lanes": ["", "LIASSE", "", "LIASSE", ""] },
+    { "lanes": ["OBS_BAS", "", "", "", "OBS_BAS"] },
+    { "lanes": ["BILLET", "", "", "", "BILLET"] },
+    { "lanes": ["BILLET", "", "LIASSE", "", "BILLET"] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "BILLET", "OBS_BAS", "BILLET", ""] },
+    { "lanes": ["", "", "LINGOT", "", ""] },
+    { "lanes": ["", "", "OBS_BAS", "", ""] },
+    { "lanes": ["", "BILLET", "", "BILLET", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

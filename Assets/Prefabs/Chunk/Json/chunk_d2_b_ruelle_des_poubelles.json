@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D2_B",
+  "name": "Ruelle des poubelles",
+  "type": "Standard",
+  "difficulty": 2,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "ALEA_PLEIN", "OBS_PLEIN", ""] },
+    { "lanes": ["", "ALEA_SAUT_GLISSE", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", "BILLET"] },
+    { "lanes": ["", "", "BILLET", "", "LIASSE"] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "", "ALEA_PLEIN"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "OBS_PLEIN", "", "OBS_PLEIN", ""] },
+    { "lanes": ["", "LIASSE", "BILLET", "LIASSE", ""] },
+    { "lanes": ["", "", "ALEA_SAUT_GLISSE", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "BILLET", "OBS_PLEIN_3R", "", "OBS_PLEIN"] },
+    { "lanes": ["", "", "", "", "LINGOT"] },
+    { "lanes": ["", "BILLET", "", "", "OBS_PLEIN"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D1_A",
+  "name": "Première ligne",
+  "type": "Apprentissage",
+  "difficulty": 1,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "BILLET", "OBS_PLEIN", "", ""] },
+    { "lanes": ["LIASSE", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "OBS_BAS", "", "", ""] },
+    { "lanes": ["", "", "", "OBS_PLEIN", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "BILLET", "LIASSE", "", ""] },
+    { "lanes": ["", "", "", "OBS_PLEIN", ""] },
+    { "lanes": ["", "OBS_HAUT", "", "", ""] },
+    { "lanes": ["", "", "LIASSE", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

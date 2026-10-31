@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D4_B",
+  "name": "Slalom",
+  "type": "Standard",
+  "difficulty": 4,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["BILLET", "", "OBS_PLEIN", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_PLEIN", "BILLET", "", "", "OBS_PLEIN"] },
+    { "lanes": ["", "OBS_PLEIN", "BILLET", "LIASSE", ""] },
+    { "lanes": ["", "", "OBS_PLEIN", "BILLET", ""] },
+    { "lanes": ["", "", "", "OBS_PLEIN", "BILLET"] },
+    { "lanes": ["ALEA_PLEIN", "ALEA_PLEIN", "", "", ""] },
+    { "lanes": ["", "", "", "LIASSE", "ALEA_SAUT_GLISSE"] },
+    { "lanes": ["", "", "", "BILLET", ""] },
+    { "lanes": ["", "", "BILLET", "OBS_PLEIN", ""] },
+    { "lanes": ["", "", "OBS_PLEIN", "", ""] },
+    { "lanes": ["BILLET", "OBS_PLEIN", "", "", ""] },
+    { "lanes": ["ALEA_SAUT_GLISSE", "", "", "LINGOT", ""] },
+    { "lanes": ["", "BILLET", "LIASSE", "OBS_PLEIN", ""] },
+    { "lanes": ["OBS_PLEIN", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "OBS_PLEIN", "BILLET", "OBS_PLEIN", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

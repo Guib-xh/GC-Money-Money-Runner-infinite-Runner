@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: SSO_GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::SSO_GameConfig
   lineCount: 5
-  lineWidthLv: 2
+  laneWidthLv: 2
   rowDepthR: 2
   visibilityRows: 40
+  despawnBehind: -50
+  chunkLengthRow: 10
   jumpHeight: 3
   lateralMoveDuration: 0.25
   jumpDuration: 1.2
   slideDuration: 1.2
   slideHeightScale: 0.5
-  kvGrowthPerStage: 0.5
+  kvGrowthPerStage: 0.4
   v0: 6
-  kvMax: 10
-  firstStageDuration: 20
-  minStageDurationSeconds: 10
+  kvMax: 4
+  firstStageDuration: 150
+  minStageDurationSeconds: 120
   startingHearts: 3
   postCollisionInvulnerabilitySeconds: 1
   scorePerMoney: 10
   scorePerRow: 15
   scorePerBoss: 2000
-  qteFailPauseSeconds: 2
-  keyPressedWindownDuration: 1

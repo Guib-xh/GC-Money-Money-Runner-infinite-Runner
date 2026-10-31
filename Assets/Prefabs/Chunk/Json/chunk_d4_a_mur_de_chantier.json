@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D4_A",
+  "name": "Mur de chantier",
+  "type": "Défi",
+  "difficulty": 4,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_PLEIN_2R", "", "BILLET", "", "OBS_PLEIN_2R"] },
+    { "lanes": ["", "OBS_PLEIN", "OBS_BAS", "OBS_PLEIN", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "LIASSE", ""] },
+    { "lanes": ["", "OBS_PLEIN_3R", "OBS_HAUT", "OBS_PLEIN_3R", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "", "OBS_PLEIN"] },
+    { "lanes": ["LIASSE", "", "", "", ""] },
+    { "lanes": ["OBS_HAUT", "OBS_HAUT", "", "OBS_BAS", "OBS_BAS"] },
+    { "lanes": ["", "LIASSE", "BILLET", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "", "OBS_HAUT"] },
+    { "lanes": ["", "", "BILLET", "OBS_PLEIN", "LINGOT"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", "LOOTBOX"] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

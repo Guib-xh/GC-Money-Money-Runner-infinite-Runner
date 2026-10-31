@@ -199,8 +199,9 @@ Transform:
   - {fileID: 1702399322}
   - {fileID: 1820964394}
   - {fileID: 486812155}
+  - {fileID: 498514350}
+  - {fileID: 1278920583}
   - {fileID: 124657748}
-  - {fileID: 43081620}
   - {fileID: 1614543978}
   - {fileID: 1061207567}
   - {fileID: 202001705}
@@ -229,61 +230,6 @@ Transform:
   - {fileID: 1203220821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &43081619
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 43081620}
-  - component: {fileID: 43081621}
-  m_Layer: 0
-  m_Name: ChunkGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &43081620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43081619}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -929.6627, y: -588.8422, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 37505341}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &43081621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43081619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a17a6a0b1842a5ad6580a91ab40482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrackGenerator
-  _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
-  _chunkPrefabs:
-  - {fileID: 7212315984809501153, guid: 999164d8c7da347b59778aaf31721ccb, type: 3}
-  - {fileID: 4096895978833420694, guid: 17a0f9988badc4e7682469106fb7d7cf, type: 3}
-  _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
-  _playerDiedEvent: {fileID: 11400000, guid: 90e87d8bfb2f5480fa5ea03319170349, type: 2}
-  _speed: {fileID: 11400000, guid: 5ed37c29b70b64f8b8f6965461d03153, type: 2}
-  _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
-  _bossActive: {fileID: 11400000, guid: f15e2fd4e86c14973b54690d521fd0c3, type: 2}
-  _countdownActive: {fileID: 11400000, guid: ab029140bb3b84341a0df8804453ca2c, type: 2}
-  _currentLine: {fileID: 11400000, guid: 5c5d8283229914a3aa057bf8dd7e33c5, type: 2}
 --- !u!1 &44342637
 GameObject:
   m_ObjectHideFlags: 0
@@ -4283,6 +4229,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3800029413037638065, guid: e452cb465488a4a3bb853e5c9b08f390, type: 3}
   m_PrefabInstance: {fileID: 7460688145033401548}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &498514349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498514350}
+  - component: {fileID: 498514351}
+  m_Layer: 0
+  m_Name: ChunkSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498514350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498514349}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -929.6627, y: -586.9672, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 37505341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &498514351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498514349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6588cf80696946d695644d5022bfc515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chunk.ChunkSpawner
+  _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
+  _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
+  _playerDiedEvent: {fileID: 11400000, guid: 90e87d8bfb2f5480fa5ea03319170349, type: 2}
+  _speed: {fileID: 11400000, guid: 5ed37c29b70b64f8b8f6965461d03153, type: 2}
+  _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
+  _bossActive: {fileID: 11400000, guid: f15e2fd4e86c14973b54690d521fd0c3, type: 2}
+  _countdownActive: {fileID: 11400000, guid: ab029140bb3b84341a0df8804453ca2c, type: 2}
+  _currentLane: {fileID: 11400000, guid: 060a7d65853284388b8873ae66cdfdb2, type: 2}
+  _currentStagePhase: {fileID: 11400000, guid: 6deb39266d8794842a4a97e2b3a37505, type: 2}
+  _pooledChunks: {fileID: 11400000, guid: f9d1946c6916a4effafb4a3014116983, type: 2}
 --- !u!1 &510032287
 GameObject:
   m_ObjectHideFlags: 0
@@ -6754,10 +6754,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp.PowerUpManager
   _availablePowerUps:
-  - {fileID: 11400000, guid: 9e43885539dad4c079fa4b16cc94a25d, type: 2}
-  - {fileID: 11400000, guid: 9e43885539dad4c079fa4b16cc94a25d, type: 2}
-  - {fileID: 11400000, guid: 9e43885539dad4c079fa4b16cc94a25d, type: 2}
-  - {fileID: 11400000, guid: 9e43885539dad4c079fa4b16cc94a25d, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
   _lootCollectedEvent: {fileID: 11400000, guid: 7c96fa15546d04b739225ac2ef66f06a, type: 2}
   _usePowerUpRequestedEvent: {fileID: 11400000, guid: ec1e44c365a8c459a8a17479bd48397f, type: 2}
@@ -8843,6 +8843,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 37505341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1278920582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278920583}
+  - component: {fileID: 1278920584}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1278920583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278920582}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -929.6627, y: -586.9672, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 37505341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278920584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278920582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b369ef544c4832a6dab159a53b1053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chunk.PoolManager
+  _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
+  _pooledChunk: {fileID: 11400000, guid: f9d1946c6916a4effafb4a3014116983, type: 2}
+  _emptyChunkPrefabs:
+  - {fileID: 4096895978833420694, guid: 17a0f9988badc4e7682469106fb7d7cf, type: 3}
+  _itemPrefabs:
+  - key: BILLET
+    value: {fileID: 534890297318871027, guid: fb806efc242634f81b9478ad64f8dae2, type: 3}
+  - key: LIASSE
+    value: {fileID: 7653566920752164204, guid: 1c73eaa201f0c4236b700ec8a45ddb92, type: 3}
+  - key: LINGOT
+    value: {fileID: 5149816723763783022, guid: d8f0c9e93fe21410fb5aca4599238a54, type: 3}
+  - key: LOOTBOX
+    value: {fileID: 739709347695802846, guid: c32419ff1d5ca492093e5edea747c5d8, type: 3}
+  - key: OBS_BAS
+    value: {fileID: 915222228588562476, guid: e7c19226536e94a9b9f737f513fac017, type: 3}
+  - key: OBS_HAUT
+    value: {fileID: 7674685414372113425, guid: 3015b16ba65c24dd3b800a7844953dd2, type: 3}
+  - key: OBS_PLEIN
+    value: {fileID: 6036766377703537623, guid: 4003f539d40374afb95c9b49967d92f2, type: 3}
+  - key: OBS_PLEIN_2R
+    value: {fileID: 4969952485205973561, guid: 49ced7b30aef7449f807bd4155f18c66, type: 3}
+  - key: OBS_PLEIN_3R
+    value: {fileID: 4078635434461841397, guid: 77b12ca387ef24c66958ba5858df2d3d, type: 3}
+  _chunkFiles:
+  - {fileID: 4900000, guid: ae6c9ecc117be48ce9d93d7b10280a10, type: 3}
+  - {fileID: 4900000, guid: 0e1aa0cdb97124335a64fe0dae68d332, type: 3}
+  - {fileID: 4900000, guid: f0e66cef8df4744968a80f64b972005f, type: 3}
+  - {fileID: 4900000, guid: 5c5b13e0ffeba4b259cfbe2aac465ed9, type: 3}
+  - {fileID: 4900000, guid: bbe5e17266aa644b2a568dd0b57e6b44, type: 3}
+  - {fileID: 4900000, guid: 074c5f26aa9b84613ab3296959e02b55, type: 3}
+  - {fileID: 4900000, guid: bf1bda557ed5845fe846a020ba26c87c, type: 3}
+  - {fileID: 4900000, guid: 3554f970a528c4032beef7411364b279, type: 3}
+  - {fileID: 4900000, guid: b1a4f2b1d87f44685844d25a2ff3c59e, type: 3}
+  - {fileID: 4900000, guid: 0fa24e1f6c9ac401c907f96964822bc7, type: 3}
 --- !u!1 &1294100525
 GameObject:
   m_ObjectHideFlags: 0
@@ -10738,6 +10816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
+  _stagePhase: {fileID: 11400000, guid: d6c8315683dd440419896d38a56138e2, type: 2}
   _bossStartedEvent: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
   _requestCoundownEvent: {fileID: 11400000, guid: aecfbc3676d424b28a53c3fdd4a1963a, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
@@ -10749,6 +10828,7 @@ MonoBehaviour:
   _inStageDistanceRows: {fileID: 11400000, guid: 3dfc919a52aec40fda1eca0cefa1fab5, type: 2}
   _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
   _currentStage: {fileID: 11400000, guid: 998813380d1174d2fa32a66b829fbeb8, type: 2}
+  _currentStagePhase: {fileID: 11400000, guid: 6deb39266d8794842a4a97e2b3a37505, type: 2}
 --- !u!4 &1614543978
 Transform:
   m_ObjectHideFlags: 0
@@ -14385,8 +14465,7 @@ PrefabInstance:
       propertyPath: _bossQTEActive
       value: 
       objectReference: {fileID: 11400000, guid: 83aaa33980a3e425c908cfe6f74a9d2a, type: 2}
-    m_RemovedComponents:
-    - {fileID: 109969181434264598, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

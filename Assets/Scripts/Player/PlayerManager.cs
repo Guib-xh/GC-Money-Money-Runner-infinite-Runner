@@ -28,7 +28,7 @@ namespace Player
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         
         //WRITE
-        [SerializeField] private RSO_CurrentLine _currentLine;
+        [SerializeField] private RSO_CurrentLane _currentLane;
         
         //READ
         [SerializeField] private RSO_BossActive _bossActive;
@@ -72,7 +72,7 @@ namespace Player
             _isSliding = false;
             _isJumping = false;
 
-            _currentLine.Value = (_gameConfig.lineCount - 1) / 2;
+            _currentLane.Value = (_gameConfig.laneCount - 1) / 2;
             SetX(0);
             SetHeight(0);
             SetScaleY(1f);
@@ -104,8 +104,8 @@ namespace Player
         private void RequestLineMovement(int direction)
         {
             //Debug.Log("Requesting Line Movement");
-            int target = _currentLine.Value + direction;
-            if (target < 0 || target >= _gameConfig.lineCount) return; // hors piste
+            int target = _currentLane.Value + direction;
+            if (target < 0 || target >= _gameConfig.laneCount) return; // hors piste
 
             if (_isMovingLine)
             {
@@ -119,8 +119,8 @@ namespace Player
         private IEnumerator MoveLineRoutine(int direction)
         {
             _isMovingLine = true;
-            int fromLane = _currentLine.Value;
-            int toLine = _currentLine.Value + direction;
+            int fromLane = _currentLane.Value;
+            int toLine = _currentLane.Value + direction;
             float fromX = LaneToX(fromLane);
             float toX = LaneToX(toLine);
 
@@ -135,7 +135,7 @@ namespace Player
 
             SetX(toX);
 
-            _currentLine.Value = toLine;
+            _currentLane.Value = toLine;
             _isMovingLine = false;
 
             if (_pendingLineMove != 0)
@@ -146,7 +146,7 @@ namespace Player
             }
         }
 
-        private float LaneToX(int lane) => (lane - (_gameConfig.lineCount - 1) / 2f) * _gameConfig.lineWidthLv;
+        private float LaneToX(int lane) => (lane - (_gameConfig.laneCount - 1) / 2f) * _gameConfig.laneWidthLv;
 
         private void SetX(float newX)
         {

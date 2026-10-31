@@ -7,12 +7,15 @@ using Speed;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+
+
 namespace Stage
 {
     public class StageManager : MonoBehaviour
     {
         // GAME CONFIG
         [SerializeField] private SSO_GameConfig _gameConfig;
+        [SerializeField] private SSO_StagePhase _stagePhase;
 
         //DISPATCH
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
@@ -32,6 +35,8 @@ namespace Stage
         
         //WRITE
         [SerializeField] private RSO_CurrentStage _currentStage;
+        [SerializeField] private RSO_CurrentStagePhase _currentStagePhase;
+        
 
         private float _currentTotalDistanceRows;
         
@@ -59,6 +64,7 @@ namespace Stage
         private void Initialize()
         {
             _currentStage.Value = 0; //On init à 0 pour passer à 1 des le premier startStage
+            _currentStagePhase.Value = _stagePhase.Phases[0];
             _inStageDistanceRows.Value = 0f;
             _currentTotalDistanceRows = 0;
             StartCountdownBeforeStage();
@@ -82,12 +88,21 @@ namespace Stage
         private void UpdateStagePhase(float value)
         {
             if (_bossActive.Value || value == 0) return;
-            //Debug.Log($"Stage {_stageLengthRows.Value} total : {value} m");
             _inStageDistanceRows.Value += value - _currentTotalDistanceRows;
-            //Debug.Log($"Stage {_stageLengthRows.Value} - _inStageDistanceRows : {_inStageDistanceRows.Value} m");
-            
             _currentTotalDistanceRows = value;
-            if (_inStageDistanceRows.Value >= _stageLengthRows.Value)
+            
+            
+            float fraction = _inStageDistanceRows.Value / _stageLengthRows.Value;
+            foreach (Phase phase in _stagePhase.Phases)
+            {
+                if (fraction <= phase.startThreshold)
+                {
+                    _currentStagePhase.Value = phase; 
+                    break;
+                }
+            }
+            
+            if (fraction >= 1f)
             {
                 _bossStartedEvent.Dispatch();
             }

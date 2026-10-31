@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D5_B",
+  "name": "Course d'obstacles",
+  "type": "Défi",
+  "difficulty": 5,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "BILLET", ""] },
+    { "lanes": ["OBS_PLEIN", "", "OBS_PLEIN", "BILLET", "OBS_PLEIN"] },
+    { "lanes": ["", "OBS_PLEIN_2R", "", "ALEA_SAUT_GLISSE", ""] },
+    { "lanes": ["OBS_PLEIN", "", "", "BILLET", "OBS_PLEIN"] },
+    { "lanes": ["OBS_PLEIN", "OBS_PLEIN", "OBS_PLEIN", "OBS_HAUT", "OBS_PLEIN"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "OBS_PLEIN_3R", "", "BILLET", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["ALEA_PLEIN", "", "BILLET", "OBS_PLEIN", "ALEA_PLEIN"] },
+    { "lanes": ["", "", "ALEA_SAUT_GLISSE", "", ""] },
+    { "lanes": ["", "", "", "LIASSE", ""] },
+    { "lanes": ["OBS_BAS", "OBS_BAS", "", "OBS_BAS", "OBS_BAS"] },
+    { "lanes": ["", "", "", "LIASSE", ""] },
+    { "lanes": ["OBS_HAUT", "", "BILLET", "OBS_PLEIN", ""] },
+    { "lanes": ["LINGOT", "", "BILLET", "", ""] },
+    { "lanes": ["", "OBS_PLEIN", "", "", "ALEA_PLEIN"] },
+    { "lanes": ["LOOTBOX", "", "BILLET", "", ""] },
+    { "lanes": ["LIASSE", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

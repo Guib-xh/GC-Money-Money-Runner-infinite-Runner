@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D5_A",
+  "name": "Heure de pointe",
+  "type": "Défi",
+  "difficulty": 5,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["OBS_PLEIN_3R", "", "OBS_PLEIN_2R", "", "OBS_PLEIN"] },
+    { "lanes": ["", "BILLET", "", "OBS_BAS", ""] },
+    { "lanes": ["", "OBS_HAUT", "", "OBS_PLEIN", ""] },
+    { "lanes": ["", "BILLET", "", "", "LIASSE"] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "OBS_PLEIN_2R", ""] },
+    { "lanes": ["OBS_BAS", "OBS_BAS", "BILLET", "", "OBS_PLEIN"] },
+    { "lanes": ["", "", "OBS_HAUT", "LIASSE", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_PLEIN", "OBS_PLEIN", "OBS_BAS", "OBS_PLEIN", "OBS_PLEIN"] },
+    { "lanes": ["", "LIASSE", "", "", ""] },
+    { "lanes": ["", "ALEA_SAUT_GLISSE", "BILLET", "OBS_BAS", ""] },
+    { "lanes": ["OBS_PLEIN_2R", "", "BILLET", "", "OBS_PLEIN_2R"] },
+    { "lanes": ["", "OBS_HAUT", "", "OBS_HAUT", ""] },
+    { "lanes": ["", "", "BILLET", "LINGOT", ""] },
+    { "lanes": ["OBS_PLEIN", "", "", "", "OBS_PLEIN"] },
+    { "lanes": ["", "OBS_PLEIN", "BILLET", "LOOTBOX", "OBS_PLEIN"] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

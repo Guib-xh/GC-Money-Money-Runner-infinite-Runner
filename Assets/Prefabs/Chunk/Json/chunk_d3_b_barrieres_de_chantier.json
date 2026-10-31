@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D3_B",
+  "name": "Barrières de chantier",
+  "type": "Standard",
+  "difficulty": 3,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_BAS", "OBS_BAS", "OBS_BAS", "", ""] },
+    { "lanes": ["", "", "", "LIASSE", ""] },
+    { "lanes": ["", "BILLET", "", "LIASSE", ""] },
+    { "lanes": ["", "BILLET", "", "OBS_PLEIN", ""] },
+    { "lanes": ["", "", "OBS_HAUT", "OBS_HAUT", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "", "", "OBS_PLEIN"] },
+    { "lanes": ["", "ALEA_PLEIN", "BILLET", "ALEA_PLEIN", ""] },
+    { "lanes": ["", "LIASSE", "BILLET", "", ""] },
+    { "lanes": ["", "OBS_BAS", "OBS_BAS", "OBS_BAS", ""] },
+    { "lanes": ["LINGOT", "", "BILLET", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "", "BILLET"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "OBS_HAUT", "", "OBS_PLEIN_2R", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D3_A",
+  "name": "Embouteillage",
+  "type": "Standard",
+  "difficulty": 3,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_PLEIN_2R", "", "BILLET", "", "OBS_PLEIN_2R"] },
+    { "lanes": ["", "LIASSE", "BILLET", "", ""] },
+    { "lanes": ["", "OBS_PLEIN_3R", "OBS_BAS", "OBS_PLEIN_3R", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "OBS_HAUT", "", "OBS_PLEIN"] },
+    { "lanes": ["", "BILLET", "", "", ""] },
+    { "lanes": ["", "BILLET", "", "OBS_PLEIN_2R", ""] },
+    { "lanes": ["", "BILLET", "", "", "LINGOT"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", "OBS_PLEIN"] },
+    { "lanes": ["", "OBS_HAUT", "ALEA_SAUT_GLISSE", "", ""] },
+    { "lanes": ["", "", "BILLET", "LIASSE", ""] },
+    { "lanes": ["OBS_PLEIN", "", "BILLET", "", "LOOTBOX"] },
+    { "lanes": ["", "OBS_PLEIN_2R", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "LIASSE", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

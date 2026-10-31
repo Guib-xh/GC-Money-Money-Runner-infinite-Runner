@@ -1,0 +1,28 @@
+{
+  "id": "RUE_D2_A",
+  "name": "Chantier",
+  "type": "Standard",
+  "difficulty": 2,
+  "rows": [
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["OBS_PLEIN", "", "OBS_BAS", "", "OBS_PLEIN"] },
+    { "lanes": ["", "LIASSE", "", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "OBS_HAUT", "OBS_HAUT", "", ""] },
+    { "lanes": ["", "", "", "LIASSE", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "OBS_PLEIN_2R", "", "OBS_PLEIN_2R", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "OBS_BAS", "BILLET", ""] },
+    { "lanes": ["OBS_PLEIN", "", "LIASSE", "BILLET", ""] },
+    { "lanes": ["", "", "", "OBS_HAUT", ""] },
+    { "lanes": ["", "", "BILLET", "", ""] },
+    { "lanes": ["", "", "BILLET", "", "LOOTBOX"] },
+    { "lanes": ["", "", "", "", ""] },
+    { "lanes": ["", "", "", "", ""] }
+  ]
+}

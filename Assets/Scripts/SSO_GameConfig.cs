@@ -5,10 +5,11 @@ using UnityEngine.Serialization;
 public class SSO_GameConfig: ScriptableObject
 {
     //MAP
-    public int lineCount = 5;
-    public float lineWidthLv = 2f; //en m
+    public int laneCount = 5;
+    public float laneWidthLv = 2f; //en m
     public float rowDepthR = 2f; //en m
     public int visibilityRows = 40; //nombre de rangé en visibilité : 20R par défaut
+    public int despawnBehind = -50; //nombre de row après laquelle le chunk despawn
     
     //MOUVEMENT
     public float jumpHeight = 3f;
