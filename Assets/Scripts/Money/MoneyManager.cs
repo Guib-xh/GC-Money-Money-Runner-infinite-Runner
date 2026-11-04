@@ -78,7 +78,7 @@ namespace Money
         {
             _moneyInRun.Value += reward;
             _moneyInStage.Value += reward;
-            _moneyChest.Value += _moneyInRun.Value;
+            _moneyChest.Value += _moneyInStage.Value;
             _moneyInStage.Value = 0;
         }
     }

@@ -16,7 +16,7 @@ namespace Boss
         [SerializeField] private SSO_BossConfig _bossConfig;
         
         //DISPATCH
-        [FormerlySerializedAs("_newQTEStequenceStartedEvent")] [SerializeField] private RSE_NewQTESequenceStarted newQteSequenceStartedEvent;
+        [SerializeField] private RSE_NewQTESequenceStarted newQteSequenceStartedEvent;
         [SerializeField] private RSE_QTEFailed _QTEFailedEvent;
         [SerializeField] private RSE_BossDefeated _BossDefeatedEvent;
         [SerializeField] private RSE_QTEStepAdvanced _QTEStepAdvancedEvent;
@@ -30,11 +30,9 @@ namespace Boss
         
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
-        [SerializeField] private RSE_ContinuRun _continuRunEvent;
         [SerializeField] private RSE_BossUIIntroFinished _bossUIIntroFinishedEvent;
         
         //WRITE
-        [SerializeField] private RSO_BossActive _bossActive;
         [SerializeField] private RSO_CurrentQTEStep _currentQTEStep;
         [SerializeField] private RSO_QTESequence _QTESequence;
         [SerializeField] private RSO_QTEKeyPressedWindowProgress _keyPressedWindowProgress;
@@ -59,7 +57,6 @@ namespace Boss
             _usePowerUpActionReference.action.performed += OnUseItemPressed;;
 
             _bossStartedEvent.Event += StartBoss;
-            _continuRunEvent.Event += OnContinueRun;
             _runStartedEvent.Event += Initialize;
             _bossUIIntroFinishedEvent.Event += StartNewQTESequence;
         }
@@ -70,17 +67,16 @@ namespace Boss
             _moveRightInputActionReference.action.performed -= OnMoveRightPressed;
             _jumpInputActionReference.action.performed -= OnJumpPressed;
             _slideInputActionReference.action.performed -= OnSlidePressed;
-            _usePowerUpActionReference.action.performed += OnUseItemPressed;
+            _usePowerUpActionReference.action.performed -= OnUseItemPressed;
             
             _bossStartedEvent.Event -= StartBoss;
             _bossUIIntroFinishedEvent.Event -= StartNewQTESequence;
-            _continuRunEvent.Event -= OnContinueRun;
             _runStartedEvent.Event -= Initialize;
         }
 
         private void Initialize()
         {
-            _bossActive.Value = false;
+            _capturing = false;
         }
         
         private void OnMoveLeftPressed(InputAction.CallbackContext _) => OnKeyPressed(QTEKey.MoveLeft);
@@ -128,7 +124,6 @@ namespace Boss
         private void StartBoss()
         {
             //Debug.Log("StartBoss");
-            _bossActive.Value = true;
             _QTESequence.Value = new List<QTEKey>();
         }
 
@@ -138,10 +133,10 @@ namespace Boss
             //Debug.Log("StartNewQTESequence");
              _qteStageConfig = GetQTEStageConfig();
             _QTESequence.Value.Clear();
+            int keyPoolSize = Mathf.Min(_qteStageConfig.sequenceLength, _bossConfig.maxKeyPoolSize, _keyOrder.Length);
             for (int i = 0; i < _qteStageConfig.sequenceLength; i++)
             {
-                int keyPoolSize = Mathf.Min(_qteStageConfig.sequenceLength, _bossConfig.maxKeyPoolSize);
-                _QTESequence.Value.Add(_keyOrder[Random.Range(0, keyPoolSize-1)]);
+                _QTESequence.Value.Add(_keyOrder[Random.Range(0, keyPoolSize)]);
             }
             _currentQTEStep.Value = 0;
             newQteSequenceStartedEvent.Dispatch();
@@ -186,12 +181,5 @@ namespace Boss
         {
             return Mathf.Min(5500, 500 + _currentStage.Value * 250);
         }
-
-        private void OnContinueRun()
-        {
-            _bossActive.Value = false;
-        }
-        
-        
     }
 }

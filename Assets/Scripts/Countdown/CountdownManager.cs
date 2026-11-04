@@ -15,7 +15,6 @@ namespace Countdown
         
         //WRITE
         [SerializeField] private RSO_Countdown _countdown;
-        [SerializeField] private RSO_CountdownActive _countdownActive;
         
         //READ
         
@@ -43,7 +42,6 @@ namespace Countdown
 
         private IEnumerator RunCountdown(int duration)
         {
-            _countdownActive.Value = true;
             for (int i = duration; i > 0; i--)
             {
                 _countdown.Value = i;
@@ -55,7 +53,6 @@ namespace Countdown
                 }
             }
             _countdown.Value = 0;
-            _countdownActive.Value = false;
             _countdownRoutine = null;
             _countdownFinishedEvent.Dispatch();
             

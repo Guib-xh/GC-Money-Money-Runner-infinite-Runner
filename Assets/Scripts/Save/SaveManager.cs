@@ -27,24 +27,33 @@ namespace Save
         [SerializeField] private RSO_CurrentStage _currentStage;
         [SerializeField] private RSO_MoneyChest _moneyChest;
         [SerializeField] private RSO_ActiveProfile _activeProfile;
+
+        //Sert à éviter d'enregistrer 2 fois les states : au gameover et au retour au menu
+        private bool _runStatsSaved;
+        private SaveFile _saveFile;
+        private static string _filePath;
         
         private void Awake() => Load();
 
         private void OnEnable()
         {
+            _runStartedEvent.Event += Initialize;
             _gameOverEvent.Event += Save;
             _returnToMainMenuEvent.Event += Save;
         }
         
         private void OnDisable()
         {
+            _runStartedEvent.Event -= Initialize;
             _gameOverEvent.Event -= Save;
             _returnToMainMenuEvent.Event -= Save;
         }
-        
 
-        private SaveFile _saveFile;
-        private static string _filePath;
+        private void Initialize()
+        {
+            _runStatsSaved = false;
+        }
+
         
         private void Load()
         {
@@ -67,10 +76,14 @@ namespace Save
         {
             ProfileData profile = _saveFile.Profils;
             profile.MoneyChest = _moneyChest.Value;
-            profile.BestScore = Mathf.Max(profile.BestScore, _score.Value);
-            profile.MaxStage = Mathf.Max(profile.MaxStage, _currentStage.Value);
-            profile.CatchRubberNumber += Mathf.Max(0, _currentStage.Value - 1);
-            
+            if (!_runStatsSaved)
+            {
+                profile.BestScore = Mathf.Max(profile.BestScore, _score.Value);
+                profile.MaxStage = Mathf.Max(profile.MaxStage, _currentStage.Value);
+                profile.CatchRubberNumber += Mathf.Max(0, _currentStage.Value - 1);
+                _runStatsSaved = true;
+            }
+   
             File.WriteAllText(_filePath, JsonUtility.ToJson(_saveFile));
         }
     }

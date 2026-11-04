@@ -59,7 +59,7 @@ namespace Chunk
                     
                     GameObject item = Instantiate(itemPrefab, pooledChunk.Chunk.transform.Find("Gameplay"));
                     float x = (lane - 2) * _gameConfig.laneWidthLv;
-                    float z = (rows.Length - row) * _gameConfig.rowDepthR;
+                    float z = (row + 1) * _gameConfig.rowDepthR;
                     item.transform.localPosition = new Vector3(x, 0, z);
                     item.SetActive(true);
                     pooledChunk.Items.Add(item);
@@ -68,7 +68,7 @@ namespace Chunk
             //Debug.Log("pooled chunk contains " + pooledChunk.Items.Count + " items");
         }
 
-        //TODO Revoir cette methode
+        //TODO Revoir cette methode car le random est fixé au lancement du jeu et on ne refait pas un nouveau choix à chaque chunk
         private GameObject ResolveItemPrefab(string cell)
         {
             if (cell.Equals("ALEA_SAUT_GLISSE"))

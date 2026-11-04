@@ -16,7 +16,12 @@ namespace Obstacle
         //READ
         
         private bool _hasBeenCollided = false; //Utile pour le obstacle avec plusieurs collider
-        
+
+        private void OnEnable()
+        {
+            _hasBeenCollided = false;
+        }
+
         public void OnPlayerTrigger()
         {
             if (!_hasBeenCollided)

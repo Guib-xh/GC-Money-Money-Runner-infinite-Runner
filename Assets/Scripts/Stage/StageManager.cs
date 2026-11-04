@@ -20,6 +20,7 @@ namespace Stage
         //DISPATCH
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
         [SerializeField] private RSE_RequestCoundown _requestCoundownEvent;
+        [SerializeField] private RSE_StageStarted _stageStartedEvent;
         
         //LISTEN
         [SerializeField] private RSE_RunStarted _runStartedEvent;
@@ -29,7 +30,7 @@ namespace Stage
         //READ
         [SerializeField] private RSO_StageLengthRows _stageLengthRows;
         [SerializeField] private RSO_Speed _speed;
-        [SerializeField] private RSO_BossActive _bossActive;
+        [SerializeField] private RSO_IsInputBlocked _isInputBlocked;
         [SerializeField] private RSO_InStageDistanceRows _inStageDistanceRows;
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
         
@@ -67,6 +68,7 @@ namespace Stage
             _currentStagePhase.Value = _stagePhase.Phases[0];
             _inStageDistanceRows.Value = 0f;
             _currentTotalDistanceRows = 0;
+            _stageStartedEvent.Dispatch();
             StartCountdownBeforeStage();
         }
 
@@ -87,20 +89,21 @@ namespace Stage
 
         private void UpdateStagePhase(float value)
         {
-            if (_bossActive.Value || value == 0) return;
+            if (_isInputBlocked.Value || value == 0) return;
             _inStageDistanceRows.Value += value - _currentTotalDistanceRows;
             _currentTotalDistanceRows = value;
             
             
             float fraction = _inStageDistanceRows.Value / _stageLengthRows.Value;
+            Phase current = _stagePhase.Phases[0];
             foreach (Phase phase in _stagePhase.Phases)
             {
-                if (fraction <= phase.startThreshold)
+                if (fraction >= phase.startThreshold)
                 {
-                    _currentStagePhase.Value = phase; 
-                    break;
+                    current = phase; 
                 }
             }
+            _currentStagePhase.Value = current;
             
             if (fraction >= 1f)
             {

@@ -9,7 +9,7 @@ public class SSO_GameConfig: ScriptableObject
     public float laneWidthLv = 2f; //en m
     public float rowDepthR = 2f; //en m
     public int visibilityRows = 40; //nombre de rangé en visibilité : 20R par défaut
-    public int despawnBehind = -50; //nombre de row après laquelle le chunk despawn
+    public int despawnBehind = -10; //nombre de row après laquelle le chunk despawn
     
     //MOUVEMENT
     public float jumpHeight = 3f;

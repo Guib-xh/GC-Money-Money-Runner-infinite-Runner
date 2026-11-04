@@ -3,7 +3,6 @@ using Boss;
 using Countdown;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -26,13 +25,18 @@ namespace Player
         [SerializeField] private InputActionReference _usePowerUpActionReference;
         
         [SerializeField] private RSE_RunStarted _runStartedEvent;
+        [SerializeField] private RSE_RequestCoundown _requestCoundownEvent;
+        [SerializeField] private RSE_BossStarted _bossStartedEvent;
+        [SerializeField] private RSE_PlayerDied _playerDiedEvent;
+        [SerializeField] private RSE_ContinuRun _continuRunEvent;
+        [SerializeField] private RSE_CountdownFinished _countdownFinishedEvent;
+        
         
         //WRITE
         [SerializeField] private RSO_CurrentLane _currentLane;
+        [SerializeField] private RSO_IsInputBlocked _isInputBlocked;
         
         //READ
-        [SerializeField] private RSO_BossActive _bossActive;
-        [SerializeField] private RSO_CountdownActive _countdownActive;
 
         private int _pendingLineMove;
         private bool _isMovingLine;
@@ -51,6 +55,12 @@ namespace Player
             _usePowerUpActionReference.action.performed += OnUsePowerUpRequested;
 
             _runStartedEvent.Event += Initialize;
+            _requestCoundownEvent.Event += OnCountdownRequested;
+            _bossStartedEvent.Event += BlockInput;
+            _playerDiedEvent.Event += BlockInput;
+            _continuRunEvent.Event += UnlockInput;
+            _countdownFinishedEvent.Event += UnlockInput;
+            
         }
 
         private void OnDisable()
@@ -62,6 +72,11 @@ namespace Player
             _usePowerUpActionReference.action.performed -= OnUsePowerUpRequested;
 
             _runStartedEvent.Event -= Initialize;
+            _requestCoundownEvent.Event -= OnCountdownRequested;
+            _bossStartedEvent.Event -= BlockInput;
+            _playerDiedEvent.Event -= BlockInput;
+            _continuRunEvent.Event -= UnlockInput;
+            _countdownFinishedEvent.Event -= UnlockInput;
         }
 
         private void Initialize()
@@ -91,30 +106,30 @@ namespace Player
         private void OnMoveLeftRequested(InputAction.CallbackContext _)
         {
             if (IsInputBlocked()) return;
-            _moveLeftEvent.Dispatch();
-            RequestLineMovement(-1);
+            if (RequestLineMovement(-1)) _moveLeftEvent.Dispatch();
+            
         }
 
         private void OnMoveRightRequested(InputAction.CallbackContext _)
         {
             if (IsInputBlocked()) return;
-            _moveRightEvent.Dispatch();
-            RequestLineMovement(1);
+            
+            if (RequestLineMovement(1)) _moveRightEvent.Dispatch();
         } 
 
-        private void RequestLineMovement(int direction)
+        private bool RequestLineMovement(int direction)
         {
             //Debug.Log("Requesting Line Movement");
             int target = _currentLane.Value + direction;
-            if (target < 0 || target >= _gameConfig.laneCount) return; // hors piste
+            if (target < 0 || target >= _gameConfig.laneCount) return false; // hors piste
 
             if (_isMovingLine)
             {
                 _pendingLineMove = direction;
-                return;
+                return true;
             }
             StartCoroutine(MoveLineRoutine(direction));
-
+            return true;
         }
         
         private IEnumerator MoveLineRoutine(int direction)
@@ -246,7 +261,20 @@ namespace Player
 
         private bool IsInputBlocked()
         {
-            return _bossActive.Value || _countdownActive.Value;
+            return _isInputBlocked.Value;
+        }
+
+        private void OnCountdownRequested(int _) => BlockInput();
+
+        private void BlockInput()
+        {
+            _isInputBlocked.Value = true;
+        }
+        
+        private void UnlockInput()
+        {
+            Debug.Log("UnlockInput");
+            _isInputBlocked.Value = false;
         }
 
     }

@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 
@@ -20,8 +21,12 @@ namespace Loot
 
         
         private bool _collected;
-        
-        
+
+        private void OnEnable()
+        {
+            _collected = false;
+        }
+
 
         public void OnPlayerTrigger()
         {

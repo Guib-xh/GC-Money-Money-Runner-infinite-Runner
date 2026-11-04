@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Boss;
-using Countdown;
 using Player;
 using Speed;
 using Stage;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Chunk
 {
@@ -19,7 +16,7 @@ namespace Chunk
         //DISPATCH
             
         //LISTEN
-        [SerializeField] private RSE_RunStarted _runStartedEvent;
+        [SerializeField] private RSE_StageStarted _stageStartedEvent;
         [SerializeField] private RSE_PlayerDied _playerDiedEvent;
         
         //WRITE
@@ -27,8 +24,7 @@ namespace Chunk
         //READ
         [SerializeField] private RSO_Speed _speed;
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
-        [SerializeField] private RSO_BossActive _bossActive;
-        [SerializeField] private RSO_CountdownActive _countdownActive;
+        [SerializeField] private RSO_IsInputBlocked _isInputBlocked;
         [SerializeField] private RSO_CurrentLane _currentLane;
         [SerializeField] private RSO_CurrentStagePhase _currentStagePhase;
         [SerializeField] private RSO_PooledChunks _pooledChunks;
@@ -44,13 +40,13 @@ namespace Chunk
         
         private void OnEnable()
         {
-            _runStartedEvent.Event += Initialize;
+            _stageStartedEvent.Event += Initialize;
             _playerDiedEvent.Event += OnPlayerDied;
         }
 
         private void OnDisable()
         {
-            _runStartedEvent.Event -= Initialize;
+            _stageStartedEvent.Event -= Initialize;
             _playerDiedEvent.Event -= OnPlayerDied;
             
         } 
@@ -66,19 +62,19 @@ namespace Chunk
 
             initSeed();
 
-            while (_nextSpawnPositionZ < _gameConfig.visibilityRows * _gameConfig.rowDepthR)
-                SpawnNextChunk();
+            while (_nextSpawnPositionZ < _gameConfig.visibilityRows * _gameConfig.rowDepthR && SpawnNextChunk()){}
         }
 
         private void initSeed()
         {
-            if (_seed == 0) _seed = Environment.TickCount;
+            _seed = Environment.TickCount;
             _rng = new System.Random(_seed);
+            Debug.Log("_seed : " + _seed);
         }
         
         private void Update()
         {
-            if (IsMovementActive()) return;
+            if (IsInputBlocked()) return;
             float deltaMeters = _speed.Value * Time.deltaTime;
             float deltaRows = deltaMeters / _gameConfig.rowDepthR;
             _totalDistanceRows.Value += deltaRows;
@@ -89,7 +85,8 @@ namespace Chunk
                 PooledChunk chunk = _activeChunk[i];
                 chunk.Chunk.transform.position -= new Vector3(0, 0, deltaMeters);
                 //Si le chunk arrive derrière le joueur on le supprime
-                if (chunk.Chunk.transform.position.z < _gameConfig.despawnBehind * _gameConfig.rowDepthR) 
+                int chunkLength = chunk.Data.rows.Length;
+                if (chunk.Chunk.transform.position.z + chunkLength < _gameConfig.despawnBehind * _gameConfig.rowDepthR) 
                 {
                     RecycleChunk(chunk);
                     _activeChunk.RemoveAt(i);
@@ -103,52 +100,63 @@ namespace Chunk
             
         }
         
-        private void SpawnNextChunk()
+        private bool SpawnNextChunk()
         {
             //Debug.Log("Spawning chunk");
             PooledChunk chunk = PickEligibleChunk();
+            if (chunk == null) return false;
             chunk.Chunk.transform.position = new Vector3(0f, 0f, _nextSpawnPositionZ);
             chunk.Chunk.SetActive(true);
             _nextSpawnPositionZ += chunk.Data.rows.Length * _gameConfig.rowDepthR;
             _activeChunk.Add(chunk);
+            return true;
         }
         
 
         //Récupère dans le pool de chunk un chunk qui est à la fois : inactif, du bon niveau de difficulté par rapport à l'avancé dans le stage et le dernier chunk qui a été spawn
         private PooledChunk PickEligibleChunk()
         {
-            List<int> availableDifficulties = _currentStagePhase.Value.authorizedDifficulties;
+            List<int> allowedDifficulties = _currentStagePhase.Value.authorizedDifficulties;
             List<PooledChunk> eligible = new List<PooledChunk>();
             foreach (PooledChunk chunk in _pooledChunks.Value)
             {
-                if (availableDifficulties.Contains(chunk.Data.difficulty)
+                if (allowedDifficulties.Contains(chunk.Data.difficulty)
                     && chunk.Data.id != _lastChunkId
                     && !chunk.Chunk.activeInHierarchy)
                 {
-                    Debug.Log("_currentStagePhase.Value.phaseName" + _currentStagePhase.Value.phaseName);
-                    Debug.Log("chunk.Data.difficulty : " + chunk.Data.difficulty + "is authorized");
+                    //Debug.Log("_currentStagePhase.Value.phaseName" + _currentStagePhase.Value.phaseName);
+                    //Debug.Log("chunk.Data.difficulty : " + chunk.Data.difficulty + "is authorized");
                     eligible.Add(chunk);
                 }
             }
 
+            //Si on a pas trouvé de chunk libre dans la difficulté autorisé, on prend la difficulté juste après
+            if (eligible.Count == 0)
+            {
+                foreach (PooledChunk chunk in _pooledChunks.Value)
+                {
+                    if (chunk.Data.id == _lastChunkId || chunk.Chunk.activeInHierarchy) continue;
+                    Debug.LogWarning("Attention - Manque de chunk pour les difficultés : " + allowedDifficulties);
+                    if (chunk.Data.difficulty == allowedDifficulties[allowedDifficulties.Count] + 1) eligible.Add(chunk);
+                }
+            }
+            
             //Si on a trouvé aucun chunk sur la difficulté, on prend un chunk au hasard parmis tous
             if (eligible.Count == 0)
             {
                 foreach (PooledChunk chunk in _pooledChunks.Value)
                 {
-                    if (chunk.Data.id != _lastChunkId 
-                        && !chunk.Chunk.activeInHierarchy)
-                    {
-                        eligible.Add(chunk);
-                    }
+                    if (chunk.Data.id == _lastChunkId || chunk.Chunk.activeInHierarchy) continue;
+                    Debug.LogWarning("Attention - Manque de chunk pour les difficultés : " + allowedDifficulties);
+                    eligible.Add(chunk);
                 }
             }
 
-            PooledChunk eligibleChunk = eligible[_rng.Next(eligible.Count)];
-            _lastChunkId = eligibleChunk.Data.id;
-            return eligibleChunk;
+            PooledChunk pickedChunk = eligible[_rng.Next(eligible.Count)];
+            _lastChunkId = pickedChunk.Data.id;
+            return pickedChunk;
         }
-
+        
         private void RecycleChunk(PooledChunk oldPooledChunk)
         {
             Debug.Log("RecycleChunk oldPooledChunk.ChunkData.Name : " + oldPooledChunk.Data.id);
@@ -167,9 +175,9 @@ namespace Chunk
         
 
 
-        private bool IsMovementActive()
+        private bool IsInputBlocked()
         {
-            return _bossActive.Value || _countdownActive.Value || _stopMovement;
+            return _isInputBlocked.Value || _stopMovement;
         }
 
         private void OnPlayerDied()
