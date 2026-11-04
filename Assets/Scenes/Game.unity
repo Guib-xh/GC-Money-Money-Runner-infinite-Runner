@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.2901961, g: 0.22745098, b: 0.61960787, a: 1}
-  m_AmbientEquatorColor: {r: 0.22745098, g: 0.16470589, b: 0.5019608, a: 1}
-  m_AmbientGroundColor: {r: 0.105882354, g: 0.07058824, b: 0.2509804, a: 1}
+  m_AmbientSkyColor: {r: 0.53438056, g: 0.46186364, b: 0.9150943, a: 1}
+  m_AmbientEquatorColor: {r: 0.40385073, g: 0.33917767, b: 0.6981132, a: 1}
+  m_AmbientGroundColor: {r: 0.29223663, g: 0.23740655, b: 0.5188679, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.5308384, g: 0.5915302, b: 0.745283, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -3472,7 +3472,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 0.46751517, g: 0.49183372, b: 0.9622642, a: 1}
+  m_Color: {r: 0.67502093, g: 0.6096476, b: 0.9433962, a: 1}
   m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
@@ -3516,7 +3516,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 3940
+  m_ColorTemperature: 10241
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -4274,12 +4274,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk.ChunkSpawner
   _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
-  _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
+  _stageStartedEvent: {fileID: 11400000, guid: 479ed9f4a8d3349fdb8476fd50eb9091, type: 2}
   _playerDiedEvent: {fileID: 11400000, guid: 90e87d8bfb2f5480fa5ea03319170349, type: 2}
   _speed: {fileID: 11400000, guid: 5ed37c29b70b64f8b8f6965461d03153, type: 2}
   _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
-  _bossActive: {fileID: 0}
-  _countdownActive: {fileID: 0}
+  _isInputBlocked: {fileID: 11400000, guid: bfcf7ead00f3f4da7b408ef1a4688ebd, type: 2}
   _currentLane: {fileID: 11400000, guid: 060a7d65853284388b8873ae66cdfdb2, type: 2}
   _currentStagePhase: {fileID: 11400000, guid: 6deb39266d8794842a4a97e2b3a37505, type: 2}
   _pooledChunks: {fileID: 11400000, guid: f9d1946c6916a4effafb4a3014116983, type: 2}
@@ -5857,9 +5856,7 @@ MonoBehaviour:
   _usePowerUpActionReference: {fileID: -7189898962230513785, guid: 80041a3ee57ea460c85b9775729d0a08, type: 3}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
   _bossStartedEvent: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
-  _continuRunEvent: {fileID: 11400000, guid: 693d2beeb71a74505949d46ea07d2fdd, type: 2}
   _bossUIIntroFinishedEvent: {fileID: 11400000, guid: 9072224f9994744b1a4aa5fd2c324820, type: 2}
-  _bossActive: {fileID: 0}
   _currentQTEStep: {fileID: 11400000, guid: a6256dbdac0e24c9ea1b80931c67c6b6, type: 2}
   _QTESequence: {fileID: 11400000, guid: f35db897963324c72a9240303cda5b23, type: 2}
   _keyPressedWindowProgress: {fileID: 11400000, guid: ad1cc0b722bcf41be833c671dbc5e96b, type: 2}
@@ -7236,7 +7233,7 @@ MonoBehaviour:
   _activateDiamondRequestedEvent: {fileID: 11400000, guid: 0f0cda30c1fa34d25ab873b33c6eb522, type: 2}
   _desactivateDiamondRequestedEvent: {fileID: 11400000, guid: b8faf9a4625404dbdad579cff384b9f1, type: 2}
   _moneyInRun: {fileID: 11400000, guid: 6000c1dbb94d643b587286200b669a0f, type: 2}
-  _moneyInStage: {fileID: 11400000, guid: e459ea3d2b8dc4927b15b20e69f6cd8c, type: 2}
+  _moneyInStage: {fileID: 11400000, guid: 1b4a90d0f4094436796808289529b49c, type: 2}
   _moneyChest: {fileID: 11400000, guid: 4cb5788bcf3e147c196b40e31858bdfe, type: 2}
   _diamondActive: {fileID: 11400000, guid: 974de931fb5ea440c88d10147f6a24ab, type: 2}
 --- !u!4 &930241845
@@ -7673,7 +7670,6 @@ MonoBehaviour:
   _countdownFinishedEvent: {fileID: 11400000, guid: 3ca38aec647fe410cbbaae04a3cc491f, type: 2}
   _requestCoundownEvent: {fileID: 11400000, guid: aecfbc3676d424b28a53c3fdd4a1963a, type: 2}
   _countdown: {fileID: 11400000, guid: 22248be861796477cafd6eb08f97fb53, type: 2}
-  _countdownActive: {fileID: 11400000, guid: ab029140bb3b84341a0df8804453ca2c, type: 2}
 --- !u!114 &975104100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10821,12 +10817,13 @@ MonoBehaviour:
   _stagePhase: {fileID: 11400000, guid: d6c8315683dd440419896d38a56138e2, type: 2}
   _bossStartedEvent: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
   _requestCoundownEvent: {fileID: 11400000, guid: aecfbc3676d424b28a53c3fdd4a1963a, type: 2}
+  _stageStartedEvent: {fileID: 11400000, guid: 479ed9f4a8d3349fdb8476fd50eb9091, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
   _continuRunEvent: {fileID: 11400000, guid: 693d2beeb71a74505949d46ea07d2fdd, type: 2}
   _countdownFinishedEvent: {fileID: 11400000, guid: 3ca38aec647fe410cbbaae04a3cc491f, type: 2}
   _stageLengthRows: {fileID: 11400000, guid: 23555b475beee4ca4abe4051f84e2e7d, type: 2}
   _speed: {fileID: 11400000, guid: 5ed37c29b70b64f8b8f6965461d03153, type: 2}
-  _bossActive: {fileID: 0}
+  _isInputBlocked: {fileID: 11400000, guid: bfcf7ead00f3f4da7b408ef1a4688ebd, type: 2}
   _inStageDistanceRows: {fileID: 11400000, guid: 3dfc919a52aec40fda1eca0cefa1fab5, type: 2}
   _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
   _currentStage: {fileID: 11400000, guid: 998813380d1174d2fa32a66b829fbeb8, type: 2}
@@ -13596,7 +13593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2028797032
 Transform:
   m_ObjectHideFlags: 0
@@ -14467,6 +14464,30 @@ PrefabInstance:
       propertyPath: _bossQTEActive
       value: 
       objectReference: {fileID: 11400000, guid: 83aaa33980a3e425c908cfe6f74a9d2a, type: 2}
+    - target: {fileID: 7441775360018075576, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _isInputBlocked
+      value: 
+      objectReference: {fileID: 11400000, guid: bfcf7ead00f3f4da7b408ef1a4688ebd, type: 2}
+    - target: {fileID: 7441775360018075576, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _continuRunEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 693d2beeb71a74505949d46ea07d2fdd, type: 2}
+    - target: {fileID: 7441775360018075576, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _playerDiedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 90e87d8bfb2f5480fa5ea03319170349, type: 2}
+    - target: {fileID: 7441775360018075576, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _bossStartedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
+    - target: {fileID: 7441775360018075576, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _requestCoundownEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: aecfbc3676d424b28a53c3fdd4a1963a, type: 2}
+    - target: {fileID: 7441775360018075576, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _countdownFinishedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ca38aec647fe410cbbaae04a3cc491f, type: 2}
     - target: {fileID: 7571014060003897784, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
       propertyPath: _shieldConsumedEvent
       value: 
