@@ -1,0 +1,34 @@
+sequenceDiagram
+    participant PlayerManager
+    participant Obstacle
+    participant Loot
+    participant LifeManager
+    participant PowerUpManager
+    participant MoneyManager
+    participant ScoreManager
+    participant PlayerAnimator
+    participant GameOverManager
+
+    PlayerManager->>Obstacle: OnPlayerTrigger
+    Obstacle-->>LifeManager: RSE_ObstacleCollided
+    alt invulnérable
+        LifeManager->>LifeManager: ignoré
+    else bouclier actif
+        LifeManager-->>PowerUpManager: RSE_ShieldConsumed
+        PowerUpManager->>PowerUpManager: RSE_DesactivateCurrent
+    else
+        LifeManager->>LifeManager: TakeDamage (cœurs moins 1)
+        LifeManager->>PlayerAnimator: invulnérable 1 s
+        opt cœurs = 0
+            LifeManager->>GameOverManager: fin de partie
+        end
+    end
+
+    PlayerManager->>Loot: OnPlayerTrigger
+    Loot-->>MoneyManager: RSE_LootCollected (SSO_LootItem) : ajoute la money en fonction du type de loot
+    Loot-->>ScoreManager: RSE_LootCollected : Mise à jour du score
+    MoneyManager->>MoneyManager: RSE_LootCollected : Mise à jour de l'argent
+    Loot-->>PowerUpManager: RSE_LootCollected 
+    opt le butin est une loot box
+        PowerUpManager->>PowerUpManager: tire un power-up au hasard (stocké dans RSO_heldPowerUp)
+    end

@@ -111,6 +111,7 @@ namespace Stage
         private void StartCountdownBeforeStage()
         {
             _requestCoundownEvent.Dispatch(3);
+            _inStageDistanceRows.Value = 0f;
         }
     }
 }

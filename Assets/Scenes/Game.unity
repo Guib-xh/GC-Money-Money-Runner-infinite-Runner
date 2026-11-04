@@ -928,8 +928,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1921,7 +1921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health.HealthManger
   _gameConfig: {fileID: 11400000, guid: 4a503e591c93942f292e35feb00072fd, type: 2}
-  _shieldConsumnedEvent: {fileID: 11400000, guid: 693eaafaeaf314e8486894c0617209cf, type: 2}
+  _shieldConsumedEvent: {fileID: 11400000, guid: 6966265d89a844a1dbf7f5cb43aea59f, type: 2}
   _playerDiedEvent: {fileID: 11400000, guid: 90e87d8bfb2f5480fa5ea03319170349, type: 2}
   _obstacleCollidedEvent: {fileID: 11400000, guid: 9913f05ae9f7d4cad85b43814e18acfd, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
@@ -2152,8 +2152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -30}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: -300, y: 24.7}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &233756151
 MonoBehaviour:
@@ -2465,7 +2465,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 2
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -3472,7 +3472,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 0.41568628, g: 0.36078432, b: 1, a: 1}
+  m_Color: {r: 0.46751517, g: 0.49183372, b: 0.9622642, a: 1}
   m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
@@ -3516,7 +3516,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 3940
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -4193,8 +4193,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4278,8 +4278,8 @@ MonoBehaviour:
   _playerDiedEvent: {fileID: 11400000, guid: 90e87d8bfb2f5480fa5ea03319170349, type: 2}
   _speed: {fileID: 11400000, guid: 5ed37c29b70b64f8b8f6965461d03153, type: 2}
   _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
-  _bossActive: {fileID: 11400000, guid: f15e2fd4e86c14973b54690d521fd0c3, type: 2}
-  _countdownActive: {fileID: 11400000, guid: ab029140bb3b84341a0df8804453ca2c, type: 2}
+  _bossActive: {fileID: 0}
+  _countdownActive: {fileID: 0}
   _currentLane: {fileID: 11400000, guid: 060a7d65853284388b8873ae66cdfdb2, type: 2}
   _currentStagePhase: {fileID: 11400000, guid: 6deb39266d8794842a4a97e2b3a37505, type: 2}
   _pooledChunks: {fileID: 11400000, guid: f9d1946c6916a4effafb4a3014116983, type: 2}
@@ -5846,7 +5846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss.BossManager
   _bossConfig: {fileID: 11400000, guid: 87c7b02674dda488196ed10324a1fdcf, type: 2}
-  _newQTEStequenceStartedEvent: {fileID: 11400000, guid: caa0c3b91ff834676b808a4348f149c5, type: 2}
+  newQteSequenceStartedEvent: {fileID: 11400000, guid: a1b3567bb915c4ebd9d936cd51cf035f, type: 2}
   _QTEFailedEvent: {fileID: 11400000, guid: 7b78904557d994948ab3e34509feea0d, type: 2}
   _BossDefeatedEvent: {fileID: 11400000, guid: d91c4759ca4f844bfaa989ae1b876020, type: 2}
   _QTEStepAdvancedEvent: {fileID: 11400000, guid: 3306a5d37cd82440daa8648c5d63ef48, type: 2}
@@ -5859,7 +5859,7 @@ MonoBehaviour:
   _bossStartedEvent: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
   _continuRunEvent: {fileID: 11400000, guid: 693d2beeb71a74505949d46ea07d2fdd, type: 2}
   _bossUIIntroFinishedEvent: {fileID: 11400000, guid: 9072224f9994744b1a4aa5fd2c324820, type: 2}
-  _bossActive: {fileID: 11400000, guid: f15e2fd4e86c14973b54690d521fd0c3, type: 2}
+  _bossActive: {fileID: 0}
   _currentQTEStep: {fileID: 11400000, guid: a6256dbdac0e24c9ea1b80931c67c6b6, type: 2}
   _QTESequence: {fileID: 11400000, guid: f35db897963324c72a9240303cda5b23, type: 2}
   _keyPressedWindowProgress: {fileID: 11400000, guid: ad1cc0b722bcf41be833c671dbc5e96b, type: 2}
@@ -6536,7 +6536,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -6755,13 +6755,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp.PowerUpManager
   _availablePowerUps:
   - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
-  - {fileID: 11400000, guid: 9e43885539dad4c079fa4b16cc94a25d, type: 2}
-  - {fileID: 11400000, guid: 24ba520450b76466fbc818011d3dd3c3, type: 2}
-  - {fileID: 11400000, guid: de807f20ecd5d46dba655d9f9bb23ab1, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
+  - {fileID: 11400000, guid: 79585d394e72e4d108ef3f1b17b08c43, type: 2}
   _runStartedEvent: {fileID: 11400000, guid: ba8e40fe5ea634af1b0251a8f2bb53a8, type: 2}
   _lootCollectedEvent: {fileID: 11400000, guid: 7c96fa15546d04b739225ac2ef66f06a, type: 2}
   _usePowerUpRequestedEvent: {fileID: 11400000, guid: ec1e44c365a8c459a8a17479bd48397f, type: 2}
-  _shieldConsumnedEvent: {fileID: 11400000, guid: 693eaafaeaf314e8486894c0617209cf, type: 2}
+  _shieldConsumedEvent: {fileID: 11400000, guid: 6966265d89a844a1dbf7f5cb43aea59f, type: 2}
   _heldPowerUp: {fileID: 11400000, guid: c189f2278e6184d28b1e3d5edc999df4, type: 2}
   _activePowerUp: {fileID: 11400000, guid: 84bf706909ede412db297a1035d84207, type: 2}
   _activePowerUpTimeRemaining: {fileID: 11400000, guid: 6d842ad4cc4b2423091644f6f9defc8e, type: 2}
@@ -6908,8 +6908,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -116}
-  m_SizeDelta: {x: 269.1451, y: 43.5643}
+  m_AnchoredPosition: {x: -300, y: -115.99999}
+  m_SizeDelta: {x: 194.021, y: 42.773}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &910636556
 MonoBehaviour:
@@ -6958,8 +6958,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9547,7 +9547,7 @@ MonoBehaviour:
   _bossDefeatedEvent: {fileID: 11400000, guid: d91c4759ca4f844bfaa989ae1b876020, type: 2}
   _bossStartedEvent: {fileID: 11400000, guid: 512f7bbd0893041df94ca693f2cef488, type: 2}
   _QTEStepAdvancedEvent: {fileID: 11400000, guid: 3306a5d37cd82440daa8648c5d63ef48, type: 2}
-  _newQTEStequenceStartedEvent: {fileID: 11400000, guid: caa0c3b91ff834676b808a4348f149c5, type: 2}
+  _newQteSequenceStartedEvent: {fileID: 11400000, guid: a1b3567bb915c4ebd9d936cd51cf035f, type: 2}
   _QTESequence: {fileID: 11400000, guid: f35db897963324c72a9240303cda5b23, type: 2}
   _currentQTEStep: {fileID: 11400000, guid: a6256dbdac0e24c9ea1b80931c67c6b6, type: 2}
   _keyPressedWindowProgress: {fileID: 11400000, guid: ad1cc0b722bcf41be833c671dbc5e96b, type: 2}
@@ -9747,8 +9747,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 263, y: -111.1}
-  m_SizeDelta: {x: 150.6207, y: 51.782}
+  m_AnchoredPosition: {x: 368.2, y: 50}
+  m_SizeDelta: {x: 154.2015, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361768259
 MonoBehaviour:
@@ -9797,14 +9797,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -10279,7 +10279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 263, y: -25}
+  m_AnchoredPosition: {x: 234.52, y: 50}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1537182612
@@ -10826,7 +10826,7 @@ MonoBehaviour:
   _countdownFinishedEvent: {fileID: 11400000, guid: 3ca38aec647fe410cbbaae04a3cc491f, type: 2}
   _stageLengthRows: {fileID: 11400000, guid: 23555b475beee4ca4abe4051f84e2e7d, type: 2}
   _speed: {fileID: 11400000, guid: 5ed37c29b70b64f8b8f6965461d03153, type: 2}
-  _bossActive: {fileID: 11400000, guid: f15e2fd4e86c14973b54690d521fd0c3, type: 2}
+  _bossActive: {fileID: 0}
   _inStageDistanceRows: {fileID: 11400000, guid: 3dfc919a52aec40fda1eca0cefa1fab5, type: 2}
   _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
   _currentStage: {fileID: 11400000, guid: 998813380d1174d2fa32a66b829fbeb8, type: 2}
@@ -11744,8 +11744,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 360.00003, y: -77.77098}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 234.52, y: -50}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695613404
 MonoBehaviour:
@@ -11961,7 +11961,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -12046,8 +12046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 360, y: -110}
-  m_SizeDelta: {x: 126.7078, y: 24.4609}
+  m_AnchoredPosition: {x: 368.2, y: -50}
+  m_SizeDelta: {x: 154.2, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1717249157
 MonoBehaviour:
@@ -12096,14 +12096,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -12361,8 +12361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: 24.7}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchoredPosition: {x: -9, y: 24.7}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1822016153
 MonoBehaviour:
@@ -13596,7 +13596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2028797032
 Transform:
   m_ObjectHideFlags: 0
@@ -14467,6 +14467,10 @@ PrefabInstance:
       propertyPath: _bossQTEActive
       value: 
       objectReference: {fileID: 11400000, guid: 83aaa33980a3e425c908cfe6f74a9d2a, type: 2}
+    - target: {fileID: 7571014060003897784, guid: a20a866af192c440ba0f0725dc11454e, type: 3}
+      propertyPath: _shieldConsumedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6966265d89a844a1dbf7f5cb43aea59f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant P as Player
+    participant ChunkSpawner
+    participant SpeedManager
+    participant StageManager
+    participant ScoreManager
+    participant PowerUpManager
+    participant PlayerManager
+    participant PlayerAnimator
+
+    loop chaque frame
+        SpeedManager->>SpeedManager: Update (Kv selon progression de l'étape, puis vitesse)
+        ChunkSpawner->>ChunkSpawner: distance += vitesse*temps, déplace les chunks
+        ChunkSpawner->>ChunkSpawner: désactive les chunks derrière, réactive si besoin
+        ChunkSpawner-->>StageManager: Mise à jour de la phase/distance
+        ChunkSpawner-->>ScoreManager: Mise à jour du score
+        ChunkSpawner-->>PowerUpManager: Fin du PowerUps si distance atteinte
+    end
+    P->>PlayerManager: gauche / droite
+    PlayerManager-->>PlayerAnimator: Active l'animation MoveLeft / MoveRight
+    P->>PlayerManager: saut / glisse
+    PlayerManager->>PlayerManager: JumpCoroutine / SlideCoroutine
+    Note over StageManager: quand l'étape est parcourue, RSE_BossStarted (voir diagramme_boss)

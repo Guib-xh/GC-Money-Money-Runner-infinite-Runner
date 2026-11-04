@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Boss
@@ -20,7 +21,7 @@ namespace Boss
         [SerializeField] private RSE_BossDefeated _bossDefeatedEvent;
         [SerializeField] private RSE_BossStarted _bossStartedEvent;
         [SerializeField] private RSE_QTEStepAdvanced _QTEStepAdvancedEvent;
-        [SerializeField] private RSE_NewQTEStequenceStarted _newQTEStequenceStartedEvent;
+        [SerializeField] private RSE_NewQTESequenceStarted _newQteSequenceStartedEvent;
         
         //WRITE
 
@@ -46,7 +47,7 @@ namespace Boss
             _QTEFailedEvent.Event += ShowFailStep;
             _QTEStepAdvancedEvent.Event += ShowSuccessStep;
             _runStartedEvent.Event += Initialize;
-            _newQTEStequenceStartedEvent.Event += ShowSequence;
+            _newQteSequenceStartedEvent.Event += ShowSequence;
 
             _keyPressedWindowProgress.OnChanged += UpdateProgressBar;
         }
@@ -58,7 +59,7 @@ namespace Boss
             _QTEFailedEvent.Event -= ShowFailStep;
             _QTEStepAdvancedEvent.Event -= ShowSuccessStep;
             _runStartedEvent.Event -= Initialize;
-            _newQTEStequenceStartedEvent.Event -= ShowSequence;
+            _newQteSequenceStartedEvent.Event -= ShowSequence;
         
             _keyPressedWindowProgress.OnChanged -= UpdateProgressBar;
         }
@@ -117,8 +118,12 @@ namespace Boss
 
         private void ShowSuccessStep()
         {
-            _QTEKeySlots[_currentQTEStep.Value-1].SetResult(true);
-            _QTEKeySlots[_currentQTEStep.Value].SetCurrent();
+            int step = _currentQTEStep.Value;
+            _QTEKeySlots[step-1].SetResult(true);
+            
+            if (step >= _QTESequence.Value.Count) return;
+            
+            _QTEKeySlots[step].SetCurrent();
             _bossText.text = "GOOD !";
             _bossText.color = Color.green;
             _bossText.gameObject.SetActive(true); 

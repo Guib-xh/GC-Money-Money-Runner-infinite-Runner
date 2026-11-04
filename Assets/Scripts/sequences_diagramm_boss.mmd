@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant P as Player
+    participant StageManager
+    participant BossManager
+    participant BossDisplay
+    participant LifeManager
+    participant PlayerAnimator
+    participant InterStageDisplay
+    participant CountdownManager
+
+    StageManager-->>BossManager: RSE_BossStarted
+    StageManager-->>BossDisplay: RSE_BossStarted
+    StageManager-->>PlayerAnimator: RSE_BossStarted
+    BossManager->>BossManager: RSO_BossActive à true pour stopper les animations
+    PlayerAnimator->>PlayerAnimator: Active l'animation Idle
+    BossDisplay->>BossDisplay: intro "Prêt ? Go !"
+    BossDisplay-->>BossManager: RSE_BossUIIntroFinished (pour prévenir le démarrage des QTE)
+    BossManager->>BossManager: génère la séquence de touches
+    BossManager-->>BossDisplay: RSE_NewQTESequenceStarted
+    loop pour chaque touche (fenêtre 1 s)
+        P->>BossManager: touche pressée
+        alt bonne touche
+            BossManager-->>BossDisplay: RSE_QTEStepAdvanced (affiche la touche en vert)
+        else mauvaise touche ou temps écoulé
+            BossManager-->>BossDisplay: RSE_QTEFailed (affiche la touche en rouge)
+            BossManager-->>LifeManager: RSE_QTEFailed (Retire un PV)
+            Note over BossManager: si cœurs restants : pause 2 s puis nouvelle séquence
+        end
+    end
+    BossManager-->>BossDisplay: RSE_BossDefeated
+    BossDisplay->>BossDisplay: affiche l'écran inter-étape
+    P->>InterStageDisplay: clic Continuer
+    InterStageDisplay-->>StageManager: RSE_ContinuRun
+    InterStageDisplay-->>BossManager: RSE_ContinuRun (RSO_BossActive repasse à false)
+    StageManager-->>StageManager: RSE_StartCountdownBeforeStage (distance de l'étape remis à 0)
+    StageManager-->>CountdownManager: RequestCountdown 3

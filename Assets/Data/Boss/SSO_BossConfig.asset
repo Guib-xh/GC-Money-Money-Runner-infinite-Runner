@@ -16,8 +16,8 @@ MonoBehaviour:
   maxKeyPoolSize: 5
   qteConfigs:
   - stage: 1
-    sequenceLength: 8
-    keyPressWindowDuration: 0.4
+    sequenceLength: 3
+    keyPressWindowDuration: 1
   - stage: 2
     sequenceLength: 3
     keyPressWindowDuration: 1

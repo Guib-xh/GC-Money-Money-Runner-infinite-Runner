@@ -65,7 +65,7 @@ namespace Chunk
                     pooledChunk.Items.Add(item);
                 }
             }
-            Debug.Log("pooled chunk contains " + pooledChunk.Items.Count + " items");
+            //Debug.Log("pooled chunk contains " + pooledChunk.Items.Count + " items");
         }
 
         //TODO Revoir cette methode

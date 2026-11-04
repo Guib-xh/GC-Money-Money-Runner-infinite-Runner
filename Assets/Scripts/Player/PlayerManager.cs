@@ -39,6 +39,7 @@ namespace Player
         private bool _isJumping;
         private bool _isSliding;
         private Coroutine _slideCoroutine;
+        private Coroutine _jumpCoroutine;
 
 
         private void OnEnable()
@@ -89,14 +90,14 @@ namespace Player
 
         private void OnMoveLeftRequested(InputAction.CallbackContext _)
         {
-            if (IsPlayerCanMove()) return;
+            if (IsInputBlocked()) return;
             _moveLeftEvent.Dispatch();
             RequestLineMovement(-1);
         }
 
         private void OnMoveRightRequested(InputAction.CallbackContext _)
         {
-            if (IsPlayerCanMove()) return;
+            if (IsInputBlocked()) return;
             _moveRightEvent.Dispatch();
             RequestLineMovement(1);
         } 
@@ -159,11 +160,11 @@ namespace Player
         
         private void OnJumpRequested(InputAction.CallbackContext _)
         {
-            if (IsPlayerCanMove()) return;
+            if (IsInputBlocked()) return;
             if (_isJumping) return;
             
             if (_isSliding) StopSlide();
-            StartCoroutine(JumpCoroutine());
+            _jumpCoroutine = StartCoroutine(JumpCoroutine());
         }
 
         private IEnumerator JumpCoroutine()
@@ -189,12 +190,21 @@ namespace Player
             transform.localPosition = p;
         }
         
+        private void StopJump()
+        {
+            if (_jumpCoroutine != null) StopCoroutine(_jumpCoroutine);
+            _isJumping = false;
+            SetHeight(0);
+        }
+        
         //MOUVEMENTS SLIDE
 
         private void OnSlideRequested(InputAction.CallbackContext _)
         {
-            if (IsPlayerCanMove()) return;
-            if (_isJumping || _isSliding) return;
+            if (IsInputBlocked() || _isSliding) return;
+            
+            if (_isJumping) StopJump();
+            
             _slideCoroutine = StartCoroutine(SlideCoroutine());
         }
 
@@ -230,11 +240,11 @@ namespace Player
 
         private void OnUsePowerUpRequested(InputAction.CallbackContext context)
         {
-            if (IsPlayerCanMove()) return;
+            if (IsInputBlocked()) return;
             _usePowerUpRequestedEvent.Dispatch();
         }
 
-        private bool IsPlayerCanMove()
+        private bool IsInputBlocked()
         {
             return _bossActive.Value || _countdownActive.Value;
         }

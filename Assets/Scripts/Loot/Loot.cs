@@ -6,7 +6,6 @@ namespace Loot
     public class Loot : MonoBehaviour, IRunnerTrigger
     {
         //GAME CONFIG
-        [SerializeField] private SSO_GameConfig _gameConfig;
         [SerializeField] private SSO_LootItem _lootItem;
         
         //DISPATCH

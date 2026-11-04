@@ -1,0 +1,26 @@
+sequenceDiagram
+    
+participant P as Player
+participant PoolChunk
+participant MenuManager
+
+participant StageManager
+participant CountdownManager
+participant CountdownDisplay
+participant PlayerAnimator
+
+PoolChunk->>PoolChunk: Initialise les chunks à partir des prefabs de chunk vide et des fichiers de conf JSON
+P->>MenuManager: clic Commencer la partie
+MenuManager->>MenuManager: active RunRoot, masque le menu
+MenuManager-->>StageManager: RSE_RunStarted
+Note over MenuManager,StageManager: RSE_RunStarted est aussi écouté par Chunk, Speed, Player, Life, Money, Score, PowerUp, Save, Boss, BossDisplay (réinitialisation)
+StageManager->>StageManager: Initialisation du stage
+StageManager-->>CountdownManager: RSE_RequestCountdown(3)
+loop 3, 2, 1
+CountdownManager->>CountdownDisplay: Affiche la valeur du décompte
+end
+Note over CountdownManager: pendant le décompte, Chunk et Player sont figés
+CountdownManager-->>StageManager: RSE_CountdownFinished
+CountdownManager-->>PlayerAnimator: RSE_CountdownFinished
+PlayerAnimator->>PlayerAnimator: Activation animation "Sprint"
+StageManager->>StageManager: StartStage (étape 1, longueur de l'étape)

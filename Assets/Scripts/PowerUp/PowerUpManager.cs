@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Loot;
 using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace PowerUp
@@ -18,7 +19,7 @@ namespace PowerUp
         [SerializeField] private RSE_RunStarted _runStartedEvent;
         [SerializeField] private RSE_LootCollected _lootCollectedEvent;
         [SerializeField] private RSE_UsePowerUpRequested _usePowerUpRequestedEvent;
-        [SerializeField] private RSE_ShieldConsumned _shieldConsumnedEvent;
+        [SerializeField] private RSE_ShieldConsumed _shieldConsumedEvent;
         
         //WRITE
         [SerializeField] private RSO_HeldPowerUp _heldPowerUp;
@@ -37,7 +38,7 @@ namespace PowerUp
             _usePowerUpRequestedEvent.Event += ActivatePowerUp;
             _totalDistanceRows.OnChanged += OnDistanceChanged;
             _runStartedEvent.Event += Initialize;
-            _shieldConsumnedEvent.Event += DesactivateCurrent;
+            _shieldConsumedEvent.Event += DesactivateCurrent;
         }
 
         private void OnDisable()
@@ -46,7 +47,7 @@ namespace PowerUp
             _usePowerUpRequestedEvent.Event -= ActivatePowerUp;
             _totalDistanceRows.OnChanged -= OnDistanceChanged;
             _runStartedEvent.Event -= Initialize;
-            _shieldConsumnedEvent.Event -= DesactivateCurrent;
+            _shieldConsumedEvent.Event -= DesactivateCurrent;
         }
 
         private void Initialize()
@@ -74,13 +75,13 @@ namespace PowerUp
         private SSO_PowerUp GetRandomPowerUp()
         {
             int total = 0;
-            foreach (var pu in _availablePowerUps) total += pu.SpawnProbability;
+            foreach (var powerUp in _availablePowerUps) total += powerUp.SpawnProbability;
             int roll = Random.Range(0, total);
             int acc = 0;
-            foreach (var pu in _availablePowerUps)
+            foreach (var powerUp in _availablePowerUps)
             {
-                acc += pu.SpawnProbability;
-                if (roll <= acc) return pu;
+                acc += powerUp.SpawnProbability;
+                if (roll < acc) return powerUp;
             }
 
             return _availablePowerUps[_availablePowerUps.Count - 1];

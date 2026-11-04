@@ -5,6 +5,7 @@ using Stage;
 using Random = UnityEngine.Random;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Boss
 {
@@ -15,7 +16,7 @@ namespace Boss
         [SerializeField] private SSO_BossConfig _bossConfig;
         
         //DISPATCH
-        [SerializeField] private RSE_NewQTEStequenceStarted _newQTEStequenceStartedEvent;
+        [FormerlySerializedAs("_newQTEStequenceStartedEvent")] [SerializeField] private RSE_NewQTESequenceStarted newQteSequenceStartedEvent;
         [SerializeField] private RSE_QTEFailed _QTEFailedEvent;
         [SerializeField] private RSE_BossDefeated _BossDefeatedEvent;
         [SerializeField] private RSE_QTEStepAdvanced _QTEStepAdvancedEvent;
@@ -143,7 +144,7 @@ namespace Boss
                 _QTESequence.Value.Add(_keyOrder[Random.Range(0, keyPoolSize-1)]);
             }
             _currentQTEStep.Value = 0;
-            _newQTEStequenceStartedEvent.Dispatch();
+            newQteSequenceStartedEvent.Dispatch();
             _capturing = true;
             if (_keyPressedWindowRoutine != null) StopCoroutine(_keyPressedWindowRoutine);
             _keyPressedWindowRoutine = StartCoroutine(KeyPressedWindowTimeout());

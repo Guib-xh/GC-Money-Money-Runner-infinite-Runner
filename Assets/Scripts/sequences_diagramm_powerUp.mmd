@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant P as Player
+    participant PlayerManager
+    participant PowerUpManager
+    participant SSO_PowerUp
+    participant LifeManager
+    participant SpeedManager
+    participant MoneyManager
+
+    P->>PlayerManager: touche Power-up (shift)
+    Note over PlayerManager: ignoré si boss ou décompte actif
+    PlayerManager-->>PowerUpManager: UsePowerUpRequested
+    alt power-up instantané
+        PowerUpManager->>SSO_PowerUp: Activate
+    else power-up durable
+        PowerUpManager->>PowerUpManager: désactive l'actuel, mémorise la distance de départ
+        PowerUpManager->>SSO_PowerUp: Activate
+    end
+    SSO_PowerUp-->>LifeManager: Croissant (soin) ou Bouclier
+    SSO_PowerUp-->>SpeedManager: Café (vitesse x 0,7)
+    SSO_PowerUp-->>MoneyManager: Diamant (butin x 2)
+    Note over PowerUpManager,SSO_PowerUp: fin du power-up quand la distance dépasse sa durée en rangées, ou quand le bouclier est consommé : Desactivate
+    Note over SSO_PowerUp: Aimant et Sifflet : événements créés mais non utilisé et implémenté pour l'instant

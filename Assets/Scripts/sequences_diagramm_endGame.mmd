@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant P as Player
+    participant LifeManager
+    participant GameOverManager
+    participant MenuManager
+    participant SaveManager
+    participant GameOverDisplay
+
+    LifeManager->>GameOverManager: RSO_hearts = 0
+    GameOverManager-->>MenuManager: GameOver
+    GameOverManager-->>SaveManager: GameOver
+    MenuManager->>MenuManager: active GameOverRoot, masque RunRoot
+    MenuManager->>GameOverDisplay: active le panel GameOver
+    GameOverDisplay->>GameOverDisplay: affiche score, argent, coffre, distance
+    SaveManager->>SaveManager: sauvegarde les données dans le JSON
+    J->>GameOverDisplay: clic Retour menu
+    GameOverDisplay-->>MenuManager: ReturnToMainMenu
+    MenuManager->>MenuManager: ShowMainMenu

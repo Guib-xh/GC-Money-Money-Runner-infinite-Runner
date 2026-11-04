@@ -12,7 +12,7 @@ namespace Health
         [SerializeField] private SSO_GameConfig _gameConfig;
         
         //DISPATCH
-        [SerializeField] private RSE_ShieldConsumned _shieldConsumnedEvent;
+        [SerializeField] private RSE_ShieldConsumed _shieldConsumedEvent;
         [SerializeField] private RSE_PlayerDied _playerDiedEvent;
         
         //LISTEN
@@ -74,7 +74,7 @@ namespace Health
 
             if (_shieldActive.Value)
             {
-                _shieldConsumnedEvent.Dispatch();
+                _shieldConsumedEvent.Dispatch();
                 return;
             }
             TakeDamage();

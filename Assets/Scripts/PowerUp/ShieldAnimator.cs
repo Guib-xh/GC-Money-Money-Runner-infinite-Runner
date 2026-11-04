@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PowerUp
 {
@@ -12,7 +13,7 @@ namespace PowerUp
         //LISTEN
         [SerializeField] private RSE_ActivateShieldRequested _activateShieldRequestedEvent;
         [SerializeField] private RSE_DesactivateShieldRequested _desactivateShieldRequestedEvent;
-        [SerializeField] private RSE_ShieldConsumned _shieldConsumned;
+        [SerializeField] private RSE_ShieldConsumed _shieldConsumedEvent;
         
         //WRITE
         
@@ -25,14 +26,14 @@ namespace PowerUp
         {
             _activateShieldRequestedEvent.Event += ShowShield;
             _desactivateShieldRequestedEvent.Event += hideShield;
-            _shieldConsumned.Event += hideShield;
+            _shieldConsumedEvent.Event += hideShield;
         }
         
         private void OnDisable()
         {
             _activateShieldRequestedEvent.Event -= ShowShield;
             _desactivateShieldRequestedEvent.Event -= hideShield;
-            _shieldConsumned.Event -= hideShield;
+            _shieldConsumedEvent.Event -= hideShield;
         }
 
         private void ShowShield()

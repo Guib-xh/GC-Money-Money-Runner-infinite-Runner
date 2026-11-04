@@ -1,0 +1,69 @@
+flowchart LR
+
+    subgraph GAMELOOP[Game loop]
+        MenuManager
+        GameOverManager
+        GameOverDisplay
+        InterStageDisplay
+        SaveManager
+    end
+
+    subgraph STAGE[Stage]
+        ChunkSpawner
+        PooledChunk
+        ChunkData
+        StageManager
+        SpeedManager
+        TotalDistanceDisplay
+    end
+
+    subgraph PLAYER[Player]
+        PlayerManager
+        PlayerAnimator
+        LifeManager
+        LifeDisplay
+    end
+
+    subgraph ITEM[Obstacle & Loot]
+        Obstacle
+        Loot
+    end
+
+    subgraph SCORE[Score]
+        ScoreManager
+        ScoreDisplay
+        MoneyManager
+        MoneyDisplay
+    end
+
+    subgraph POWERUP[Power-ups]
+        PowerUpManager
+        PowerUpDisplay
+    end
+
+    subgraph BOSS[Boss]
+        BossManager
+        BossDisplay
+        QTEKeySlot
+    end
+
+    GAMELOOP <--> STAGE
+    GAMELOOP --> BOSS
+    PLAYER --> GAMELOOP
+    SCORE --> GAMELOOP
+
+    STAGE --> SCORE
+    STAGE --> ITEM
+    STAGE --> PLAYER
+
+    STAGE <--> BOSS
+    STAGE <--> POWERUP
+
+    PLAYER <--> ITEM
+    PLAYER <--> POWERUP
+    PLAYER <--> BOSS
+
+    ITEM --> SCORE
+    ITEM --> POWERUP
+
+    POWERUP --> SCORE

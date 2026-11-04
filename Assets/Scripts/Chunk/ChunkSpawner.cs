@@ -119,14 +119,14 @@ namespace Chunk
         {
             List<int> availableDifficulties = _currentStagePhase.Value.authorizedDifficulties;
             List<PooledChunk> eligible = new List<PooledChunk>();
-            Debug.Log("_pooledChunks.Value : " + _pooledChunks.Value.Count);
             foreach (PooledChunk chunk in _pooledChunks.Value)
             {
                 if (availableDifficulties.Contains(chunk.Data.difficulty)
                     && chunk.Data.id != _lastChunkId
                     && !chunk.Chunk.activeInHierarchy)
                 {
-                    Debug.Log("chunk.Items.count" + chunk.Items.Count);
+                    Debug.Log("_currentStagePhase.Value.phaseName" + _currentStagePhase.Value.phaseName);
+                    Debug.Log("chunk.Data.difficulty : " + chunk.Data.difficulty + "is authorized");
                     eligible.Add(chunk);
                 }
             }
