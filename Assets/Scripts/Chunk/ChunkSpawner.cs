@@ -130,14 +130,14 @@ namespace Chunk
                 }
             }
 
-            //Si on a pas trouvé de chunk libre dans la difficulté autorisé, on prend la difficulté juste après
+            //Si on a pas trouvé de chunk libre dans la difficulté autorisé, on prend la difficulté juste avant
             if (eligible.Count == 0)
             {
                 foreach (PooledChunk chunk in _pooledChunks.Value)
                 {
                     if (chunk.Data.id == _lastChunkId || chunk.Chunk.activeInHierarchy) continue;
                     Debug.LogWarning("Attention - Manque de chunk pour les difficultés : " + allowedDifficulties);
-                    if (chunk.Data.difficulty == allowedDifficulties[allowedDifficulties.Count] + 1) eligible.Add(chunk);
+                    if (chunk.Data.difficulty == allowedDifficulties[0] - 1) eligible.Add(chunk);
                 }
             }
             
