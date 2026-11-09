@@ -1,5 +1,6 @@
 using Loot;
 using Player;
+using Stage;
 using UnityEngine;
 
 namespace Score
@@ -21,6 +22,7 @@ namespace Score
         //READ
         [SerializeField] private RSO_TotalDistanceRows _totalDistanceRows;
         [SerializeField] private RSO_MoneyInRun _moneyInRun;
+        [SerializeField] private RSO_CurrentStage _currentStage;
         
         
 
@@ -49,7 +51,7 @@ namespace Score
 
         private void UpdateScore()
         {
-            int numberOfBossDefeated = 0; //TODO
+            int numberOfBossDefeated = _currentStage.Value - 1;
             _score.Value = _moneyInRun.Value * _gameConfig.scorePerMoney //Score de l'argent récolté
                             + Mathf.RoundToInt(_totalDistanceRows.Value * _gameConfig.scorePerRow) //Score pour la distance parcourue
                             + numberOfBossDefeated * _gameConfig.scorePerBoss; //Score pour le nombre de boss vaincu
