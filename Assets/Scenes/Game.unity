@@ -11692,6 +11692,7 @@ MonoBehaviour:
   _score: {fileID: 11400000, guid: 8d4940c70066d45b38146cfc50ded26e, type: 2}
   _totalDistanceRows: {fileID: 11400000, guid: d0b2ee2782a29491a91493bc22cf2300, type: 2}
   _moneyInRun: {fileID: 11400000, guid: 6000c1dbb94d643b587286200b669a0f, type: 2}
+  _currentStage: {fileID: 11400000, guid: 998813380d1174d2fa32a66b829fbeb8, type: 2}
 --- !u!4 &1691365819
 Transform:
   m_ObjectHideFlags: 0
